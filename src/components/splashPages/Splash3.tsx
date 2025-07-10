@@ -1,13 +1,18 @@
 import Image from "next/image";
 import React from "react";
-import Repair from "../../assets/illustations/repair_illustration.svg";
 
-function SplshPage2() {
+export const Splash3: React.FC = () => {
   return (
     <>
       {/* Illustration Section */}
       <div className="relative w-full flex justify-center items-center">
-        <Image src={Repair} alt="Car Illustration" className="w-full h-64" />
+        <Image
+          src="/assets/illustations/repair_illustration.svg"
+          alt="Car Illustration"
+          width={300}
+          height={200}
+          className="w-72 h-auto"
+        />
       </div>
 
       {/* Main Text Content */}
@@ -25,6 +30,4 @@ function SplshPage2() {
       </div>
     </>
   );
-}
-
-export default SplshPage2;
+};

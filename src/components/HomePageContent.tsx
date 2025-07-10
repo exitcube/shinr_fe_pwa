@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import SplashPage1 from "@/app/components/splashPages/SplashPage1";
-import SplashPage2 from "@/app/components/splashPages/SplashPage2";
-import SplashPage3 from "@/app/components/splashPages/SplashPage3";
+import { Splash1 } from "./splashPages/Splash1";
+import { Splash2 } from "./splashPages/Splash2";
+import { Splash3 } from "./splashPages/Splash3";
 import { AnimatePresence, motion } from "framer-motion";
 
-const splashScreens = [SplashPage1, SplashPage2, SplashPage3];
+const splashScreens = [Splash1, Splash2, Splash3];
 
-function Login() {
+export const HomePageContent: React.FC = () => {
   const [pageCount, setPageCount] = useState(0);
 
   const handleCount = () => {
@@ -99,6 +99,4 @@ function Login() {
       </div>
     </div>
   );
-}
-
-export default Login;
+};
