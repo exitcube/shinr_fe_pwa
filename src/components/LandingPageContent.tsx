@@ -4,10 +4,12 @@ import { Splash1 } from "./splashPages/Splash1";
 import { Splash2 } from "./splashPages/Splash2";
 import { Splash3 } from "./splashPages/Splash3";
 import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const splashScreens = [Splash1, Splash2, Splash3];
 
 export const HomePageContent: React.FC = () => {
+  const router = useRouter();
   const [pageCount, setPageCount] = useState(0);
 
   const handleCount = () => {
@@ -20,8 +22,8 @@ export const HomePageContent: React.FC = () => {
     <div className="flex items-center justify-center">
       <div className="w-[375px] h-[90vh] bg-white shadow-lg relative overflow-hidden">
         <div
-          className="relative flex flex-col items-center h-full pt-10 pb-5 px-6"
-          style={{ background: "linear-gradient(to bottom, #e0ffe0, #ffffff)" }}
+          className="relative flex flex-col items-center h-full"
+          style={{ background: "linear-gradient(to top, #e0ffe0, #ffffff)" }}
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -53,7 +55,7 @@ export const HomePageContent: React.FC = () => {
           {/* Arrow Button */}
           {pageCount !== 2 ? (
             <button
-              className="absolute bottom-10 bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 animate-bounce hover:animate-none"
+              className="absolute bottom-8 bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 animate-bounce hover:animate-none"
               onClick={handleCount}
             >
               <svg
@@ -73,8 +75,8 @@ export const HomePageContent: React.FC = () => {
             </button>
           ) : (
             <button
-              className="absolute bottom-10 bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 w-[85%] flex items-center justify-between"
-              // onClick={handleCount}
+              className="absolute bottom-8 bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 w-[85%] flex items-center justify-between"
+              onClick={() => router.push("/login")}
             >
               <div>
                 <span>Get Started</span>

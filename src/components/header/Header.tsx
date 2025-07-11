@@ -6,7 +6,7 @@ function Header() {
       {" "}
       <div
         className="flex items-center justify-center w-[375px] shadow-lg p-4"
-        style={{ background: "linear-gradient(to top, #e0ffe0, #ffffff)" }}
+        style={{ background: "linear-gradient(to bottom, #e0ffe0, #F5F5F5)" }}
       >
         {/* Placeholder for SHINR Logo - Replace with actual image if available */}
         <img
