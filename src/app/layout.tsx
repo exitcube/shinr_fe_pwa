@@ -28,8 +28,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
+        <div className="relative w-[375px] h-screen bg-[#F5F5F5] bg-image">
+          <div className="relative z-10 w-full h-full flex flex-col items-center">
+            <Header />
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );
