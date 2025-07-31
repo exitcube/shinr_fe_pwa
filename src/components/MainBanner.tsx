@@ -24,7 +24,6 @@ const promoCardsData = [
     imageUrl: "/assets/illustations/car_home.svg",
     altText: "Car illustration",
   },
-  // Add more cards here if needed
   {
     id: 3,
     title: "Exclusive Winter Deals!",
@@ -42,7 +41,7 @@ export const MainBanner: React.FC = () => {
   return (
     <>
       <div className="flex-grow">
-        {/* Dynamic Promotional Cards Section */}
+        {/*Cards Section */}
         <div className="mx-4 mt-4 mb-4">
           <div className="flex overflow-x-auto pb-4 scrollbar-hide space-x-4">
             {promoCardsData.map((card) => (
@@ -69,12 +68,10 @@ export const MainBanner: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Button fixed at the bottom of the card */}
+                {/* Buttoncard */}
                 <button
                   className={`flex justify-center items-center bg-white ${card.buttonTextColor} px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors mt-auto`}
                 >
-                  {" "}
-                  {/* mt-auto pushes it to the bottom */}
                   {card.buttonText}
                   <svg
                     className="w-5 h-5 ml-2"

@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
           />
         </button>
 
-        {/* Bookings Button (Highlighted) */}
+        {/* Bookings Button */}
         <button className="flex flex-col items- center -translate-y-5 z-10">
           <div className="bg-teal-500 p-4 rounded-full shadow-lg">
             <svg
