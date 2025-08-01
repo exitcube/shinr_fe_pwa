@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export const Footer: React.FC = () => {
+  const router = useRouter();
   return (
     <>
       {/* Bottom Navigation */}
@@ -25,7 +27,10 @@ export const Footer: React.FC = () => {
         </button>
 
         {/* Wallet Button */}
-        <button className="flex flex-col items-center text-gray-400 z-10 pt-2">
+        <button
+          className="flex flex-col items-center text-gray-400 z-10 pt-2"
+          onClick={() => router.push("/wallet")}
+        >
           <Image
             src="/assets/icons/Wallet.svg"
             alt="icon"

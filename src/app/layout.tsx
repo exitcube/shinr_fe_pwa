@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Footer } from "@/components/footer/Footer";
 import { HeaderWrapper } from "@/components/header/HeaderWrapper";
+import { FooterWrapper } from "@/components/footer/FooterWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +33,7 @@ export default function RootLayout({
           <div className="relative z-10 w-full h-full flex flex-col items-center overflow-hidden">
             <HeaderWrapper />
             {children}
-            <Footer />
+            <FooterWrapper />
           </div>
         </div>
       </body>
