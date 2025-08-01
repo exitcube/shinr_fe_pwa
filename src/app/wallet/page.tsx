@@ -52,10 +52,7 @@ export default function ShinrApp() {
     if (category === "All") {
       return transactions;
     }
-    const r = transactions.filter((t) => t.category === category);
-    console.log(r);
-
-    return r;
+    return transactions.filter((t) => t.category === category);
   };
 
   const tabs = [
