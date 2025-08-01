@@ -17,7 +17,10 @@ export const Footer: React.FC = () => {
           />
         </div>
 
-        <button className="flex flex-col items-center text-gray-800 z-10 pt-2">
+        <button
+          className="flex flex-col items-center text-gray-800 z-10 pt-2"
+          onClick={() => router.push("/home")}
+        >
           <Image
             src="/assets/icons/Home.svg"
             alt="icon"

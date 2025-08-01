@@ -1,10 +1,10 @@
-import { BookingSection } from "@/components/BookingSection";
-import { EarningsCard } from "@/components/EarningsCard";
-import { MainBanner } from "@/components/MainBanner";
-import { ProductsSection } from "@/components/ProductsSection";
-import { ServiceSection } from "@/components/ServiceSection";
-import { ShineSection } from "@/components/ShineSection";
-import { VendorsSection } from "@/components/VendorsSection";
+import { BookingSection } from "@/components/homeArea/BookingSection";
+import { EarningsCard } from "@/components/homeArea/EarningsCard";
+import { MainBanner } from "@/components/homeArea/MainBanner";
+import { ProductsSection } from "@/components/homeArea/ProductsSection";
+import { ServiceSection } from "@/components/homeArea/ServiceSection";
+import { ShineSection } from "@/components/homeArea/ShineSection";
+import { VendorsSection } from "@/components/homeArea/VendorsSection";
 import React from "react";
 
 export default function ShinrApp() {
