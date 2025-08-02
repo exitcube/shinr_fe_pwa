@@ -6,10 +6,12 @@ import {
   useAnimate,
   motion,
 } from "framer-motion";
+import { PaymentTypes } from "./PaymentType";
 
 export const WalletModel = ({ open, setOpen }: any) => {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(2000);
   const [customAmount, setCustomAmount] = useState(2000);
+  const [openPayment, setOpenPayment] = useState(false);
 
   const amounts = [2000, 5000, 7000];
 
@@ -28,10 +30,13 @@ export const WalletModel = ({ open, setOpen }: any) => {
       setSelectedAmount(null);
     }
   };
+
+  console.log(openPayment,"open");
+
   return (
-    <div>
+    <div className="relative">
       <DragCloseDrawer open={open} setOpen={setOpen}>
-        <div className="flex items-start justify-center font-sans">
+        <div className="flex items-start justify-center">
           <div className="w-full max-w-md">
             {/* Amount Input */}
             <div className="flex justify-center items-end text-5xl font-light text-gray-900 mb-2">
@@ -66,7 +71,10 @@ export const WalletModel = ({ open, setOpen }: any) => {
             </div>
 
             {/* Add Cash Button */}
-            <button className="flex items-center justify-between w-full bg-teal-600 text-white p-4 rounded-full text-lg font-semibold shadow-md transition-colors duration-200 hover:bg-teal-700">
+            <button
+              className="flex items-center justify-between w-full bg-teal-600 text-white p-4 rounded-full text-lg font-semibold shadow-md transition-colors duration-200 hover:bg-teal-700"
+              onClick={() => setOpenPayment(true)}
+            >
               Add Cash
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -86,6 +94,7 @@ export const WalletModel = ({ open, setOpen }: any) => {
           </div>
         </div>
       </DragCloseDrawer>
+      {openPayment && <PaymentTypes setOpenPayment={setOpenPayment} />}
     </div>
   );
 };
