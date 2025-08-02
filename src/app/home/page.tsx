@@ -5,31 +5,46 @@ import { ProductsSection } from "@/components/homeArea/ProductsSection";
 import { ServiceSection } from "@/components/homeArea/ServiceSection";
 import { ShineSection } from "@/components/homeArea/ShineSection";
 import { VendorsSection } from "@/components/homeArea/VendorsSection";
+import { FadeInSection } from "@/utils/FadeInSection";
 import React from "react";
 
 export default function ShinrApp() {
   return (
     <div className="max-w-sm mx-auto bg-[#F5F5F5] min-h-screen overflow-y-scroll no-scrollbar pb-30 pt-5">
       {/* Main Banner */}
-      <MainBanner />
+      <FadeInSection>
+        <MainBanner />
+      </FadeInSection>
 
       {/*Earnings Card*/}
-      <EarningsCard />
+      <FadeInSection>
+        <EarningsCard />
+      </FadeInSection>
 
       {/* Service Section */}
-      <ServiceSection />
+      <FadeInSection>
+        <ServiceSection />
+      </FadeInSection>
 
       {/*Booking Section*/}
-      <BookingSection />
+      <FadeInSection>
+        <BookingSection />
+      </FadeInSection>
 
       {/* Products Section */}
-      <ProductsSection />
+      <FadeInSection>
+        <ProductsSection />
+      </FadeInSection>
 
       {/* Vendors Section */}
-      <VendorsSection />
+      <FadeInSection>
+        <VendorsSection />
+      </FadeInSection>
 
       {/* Why Shine Section */}
-      <ShineSection />
+      <FadeInSection>
+        <ShineSection />
+      </FadeInSection>
     </div>
   );
 }

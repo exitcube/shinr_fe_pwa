@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 type PaymentTypesProps = {
   setOpenPayment: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,7 +18,12 @@ export const PaymentTypes: React.FC<PaymentTypesProps> = ({
 
   return (
     <>
-      <div className="max-w-sm mx-auto bg-[#F5F5F5] min-h-screen overflow-y-scroll no-scrollbar pb-5 pt-5">
+      <motion.div
+        className="max-w-sm mx-auto bg-[#F5F5F5] min-h-screen pb-5 pt-5"
+        initial={{ y: 100, opacity: 0, scale: 0.95 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
         <div className="flex flex-col fixed bottom-0 left-0 right-0 p-4 shadow-lg border-t border-gray-200 z-50 min-h-screen max-w-sm mx-auto bg-[#F5F5F5]">
           <div className="flex items-center pb-6">
             <Image
@@ -224,7 +230,7 @@ export const PaymentTypes: React.FC<PaymentTypesProps> = ({
             </svg>
           </button>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
