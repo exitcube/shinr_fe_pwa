@@ -5,18 +5,18 @@ export const Splash3: React.FC = () => {
   return (
     <>
       {/* Illustration Section */}
-      <div className="relative w-full flex justify-center items-center">
+      <div className="w-full flex justify-center items-center">
         <Image
           src="/assets/illustations/repair_illustration.svg"
           alt="Car Illustration"
           width={300}
           height={200}
-          className="w-72 h-auto"
+          className="w-full h-auto"
         />
       </div>
 
       {/* Main Text Content */}
-      <div className="text-center">
+      <div className="text-center px-4">
         <h1 className="text-2xl font-bold text-gray-800 mb-3">
           Drive Clean, Drive Smart
         </h1>

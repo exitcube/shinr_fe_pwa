@@ -2,8 +2,10 @@
 import Image from "next/image";
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export const OtpPage: React.FC = () => {
+  const router = useRouter();
   return (
     <div
       className="flex items-center justify-center z-10"
@@ -64,7 +66,10 @@ export const OtpPage: React.FC = () => {
             <div className="flex-grow"></div>
 
             {/* Bottom Button */}
-            <button className="w-full py-4 bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-102 flex items-center justify-center">
+            <button
+              className="w-full py-4 bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-102 flex items-center justify-center"
+              onClick={() => router.push("/home")}
+            >
               <span className="mr-2">Verify</span>
             </button>
           </motion.div>
