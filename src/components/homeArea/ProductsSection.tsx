@@ -77,7 +77,7 @@ export const ProductsSection: React.FC = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="overflow-x-auto pb-4 scrollbar-hide">
+        <div className="pb-4  overflow-x-scroll no-scrollbar">
           <div className="flex space-x-4">
             {products.map((product) => (
               <div
