@@ -13,10 +13,12 @@ export default function ServiceBooking() {
                 animate={{ y: 0, opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
             >
+                {/*Heading section  */}
                 <div className="bg-gray-100  font-sans flex justify-center">
                     <h1>Service Booking</h1>
 
                 </div>
+                {/*Service details Heading section  */}
                 <div className="pt-10  font-sans flex justify-between">
                     <h1 className="text-[14px] font-bold">Service Details</h1>
                     <div className="font-sans flex items-center gap-1 ">
@@ -24,6 +26,7 @@ export default function ServiceBooking() {
                         <Image className="flex" src="/assets/icons/edit.svg" alt="icon" width={14} height={14} />
                     </div>
                 </div>
+                {/*Service details  section  */}
                 <div className="pt-2 font-sans flex gap-3">
                     <div className="bg-white rounded-lg flex-col p-4 w-[20%] flex items-center justify-center">
                         <div>
@@ -47,6 +50,7 @@ export default function ServiceBooking() {
                         </div>
                     </div>
                 </div>
+                {/*Service booking banner section */}
                 <div className="pt-4">
                     {/* <Image src="/assets/images/happy_customer_container.png" alt="image" width={500} height={40} /> */}
                     <div className="bg-gradient-to-r from-[#136D35] to-[#25D366] p-2 rounded-full shadow-sm  flex items-center">
@@ -68,10 +72,10 @@ export default function ServiceBooking() {
                         </p>
                     </div>
                 </div>
+                {/*Service Section*/}
                 <div className="pt-4">
                     <ServiceSection showHeading={false} />
                 </div>
-
 
             </motion.div>
         </>
