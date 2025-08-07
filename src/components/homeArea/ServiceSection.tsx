@@ -34,11 +34,16 @@ const serviceCategories = [
     altText: "Traffic cone for assistance",
   },
 ];
+interface ServiceSectionProps {
+  showHeading?: boolean; 
+}
 
-export const ServiceSection: React.FC = () => {
+
+export const ServiceSection: React.FC<ServiceSectionProps> = ({ showHeading = true }) => {
   return (
     <>
-      <div className="px-4 mb-4">
+      <div className={` ${showHeading ? "px-4" : "px-0"}  mb-4`}>
+         {showHeading && (
         <div className="flex justify-between items-center mb-3">
           <h3 className="text-lg font-semibold text-[#101010] ">Service</h3>
           <span className="text-sm text-teal-600 hover:text-teal-800 font-semibold flex items-center group">
@@ -59,9 +64,10 @@ export const ServiceSection: React.FC = () => {
             </svg>
           </span>
         </div>
+      )}
 
         <div className="container bg-gray-50 font-sans">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-4">
             {serviceCategories.map((service, index) => (
               <div
                 key={index}

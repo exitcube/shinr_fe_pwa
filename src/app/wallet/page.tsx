@@ -86,7 +86,7 @@ export default function ShinrApp() {
               </p>
               <div onClick={() => setOpen(true)}>
                 <Image
-                  className="ml-3"
+                  className="ml-3 cursor-pointer"
                   src="/assets/icons/plus.svg"
                   alt="icon"
                   width={24}

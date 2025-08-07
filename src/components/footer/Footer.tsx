@@ -43,7 +43,8 @@ export const Footer: React.FC = () => {
         </button>
 
         {/* Bookings Button */}
-        <button className="flex flex-col items- center -translate-y-5 z-10">
+        <button className="flex flex-col items- center -translate-y-5 z-10"
+        onClick={() => router.push("/serviceBooking")}>
           <div className="bg-teal-500 p-4 rounded-full shadow-lg">
             <svg
               className="w-8 h-8 text-white"
