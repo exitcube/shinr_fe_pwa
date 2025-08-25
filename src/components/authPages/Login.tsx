@@ -30,7 +30,8 @@ export const Login: React.FC = () => {
                     Enter Your Mobile Number
                   </h1>
                   <p className="text-[14px] text-[#878787] leading-relaxed">
-                    We'll send you a one-time password (OTP) to verify it's you.
+                    We&apos;ll send you a one-time password (OTP) to verify
+                    it&apos;s you.
                   </p>
                 </div>
 

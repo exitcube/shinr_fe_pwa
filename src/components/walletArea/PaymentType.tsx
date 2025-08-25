@@ -12,7 +12,7 @@ export const PaymentTypes: React.FC<PaymentTypesProps> = ({
 }) => {
   const [selectedPayment, setSelectedPayment] = useState("Google pay");
 
-  const handlePaymentSelect = (payment: any) => {
+  const handlePaymentSelect = (payment: React.SetStateAction<string>) => {
     setSelectedPayment(payment);
   };
 

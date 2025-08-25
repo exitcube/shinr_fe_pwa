@@ -1,5 +1,4 @@
 import { Login } from "@/components/authPages/Login";
-import { OtpPage } from "@/components/authPages/OtpPage";
 import React from "react";
 
 export default function login() {

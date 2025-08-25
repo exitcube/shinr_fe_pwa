@@ -60,10 +60,11 @@ export const MainBanner: React.FC = () => {
                     </p>
                   </div>
                   <div className="ml-2 flex-shrink-0">
-                    <img
+                    <Image
                       src={card.imageUrl}
                       alt={card.altText}
                       className="w-20 h-auto object-contain"
+                      width={80}
                     />
                   </div>
                 </div>
