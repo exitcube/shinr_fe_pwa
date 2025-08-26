@@ -65,6 +65,8 @@ export const MainBanner: React.FC = () => {
                       alt={card.altText}
                       className="w-20 h-auto object-contain"
                       width={80}
+                      height={0}
+                      style={{ height: "auto" }}
                     />
                   </div>
                 </div>
