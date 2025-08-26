@@ -72,7 +72,7 @@ export const VendorsSection: React.FC = () => {
             </svg>
           </a>
         </div>
-        <div className="overflow-x-auto pb-4 scrollbar-hide">
+        <div className=" pb-4  overflow-x-scroll no-scrollbar">
           <div className="flex space-x-4">
             {vendors.map((vendor) => (
               <div

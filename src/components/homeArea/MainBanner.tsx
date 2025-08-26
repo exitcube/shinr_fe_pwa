@@ -43,7 +43,7 @@ export const MainBanner: React.FC = () => {
       <div className="flex-grow">
         {/*Cards Section */}
         <div className="mx-4 mt-4 mb-4">
-          <div className="flex overflow-x-auto pb-4 scrollbar-hide space-x-4">
+          <div className="flex overflow-x-scroll no-scrollbar pb-4  space-x-4">
             {promoCardsData.map((card) => (
               <div
                 key={card.id}
