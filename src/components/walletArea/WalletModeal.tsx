@@ -8,30 +8,27 @@ import {
 } from "framer-motion";
 import { PaymentTypes } from "./PaymentType";
 
-export const WalletModel = ({ open, setOpen }: any) => {
+type WalletModelProps = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const WalletModel: React.FC<WalletModelProps> = ({ open, setOpen }) => {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(2000);
-  const [customAmount, setCustomAmount] = useState(2000);
-  const [openPayment, setOpenPayment] = useState(false);
+  const [customAmount, setCustomAmount] = useState<number>(2000);
+  const [openPayment, setOpenPayment] = useState<boolean>(false);
 
-  const amounts = [2000, 5000, 7000];
+  const amounts: number[] = [2000, 5000, 7000];
 
-  const handleAmountSelect = (amount: React.SetStateAction<number>) => {
-    setSelectedAmount((prev: any) => {
+  const handleAmountSelect = (amount: number) => {
+    setSelectedAmount((prev) => {
       if (prev === null) return amount;
       return prev + amount;
     });
     setCustomAmount(amount);
   };
 
-  const handleCustomAmountChange = (e: { target: { value: any } }) => {
-    const value = e.target.value;
-    setCustomAmount(value);
-    if (value !== null) {
-      setSelectedAmount(null);
-    }
-  };
-
-  console.log(openPayment,"open");
+  console.log(openPayment, "open");
 
   return (
     <div className="relative">
@@ -44,9 +41,7 @@ export const WalletModel = ({ open, setOpen }: any) => {
               <span className="font-normal text-[24px] ">
                 {Math.floor(customAmount / 1)}
               </span>
-              <span className="text-[#878787] font-normal text-[24px]">
-                .00
-              </span>
+              <span className="text-[#878787] font-normal text-[24px]">.00</span>
             </div>
             <div className="text-center text-[#878787] text-[12px] mb-6">
               Enter amount to be added to Shinr
@@ -99,7 +94,17 @@ export const WalletModel = ({ open, setOpen }: any) => {
   );
 };
 
-const DragCloseDrawer = ({ open, setOpen, children }: any) => {
+type DragCloseDrawerProps = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  children: React.ReactNode;
+};
+
+const DragCloseDrawer: React.FC<DragCloseDrawerProps> = ({
+  open,
+  setOpen,
+  children,
+}) => {
   const [scope, animate] = useAnimate();
   const [drawerRef, { height }] = useMeasure();
 
@@ -139,7 +144,7 @@ const DragCloseDrawer = ({ open, setOpen, children }: any) => {
             transition={{
               ease: "easeInOut",
             }}
-            className="absolute bottom-0  overflow-hidden rounded-t-3xl max-w-sm w-full bg-[#F5F5F5] overflow-y-scroll no-scrollbar"
+            className="absolute bottom-0 overflow-hidden rounded-t-3xl max-w-sm w-full bg-[#F5F5F5] overflow-y-scroll no-scrollbar"
             style={{ y }}
             drag="y"
             dragControls={controls}
@@ -158,14 +163,6 @@ const DragCloseDrawer = ({ open, setOpen, children }: any) => {
               bottom: 0.5,
             }}
           >
-            {/* <div className="absolute left-0 right-0 top-0 z-10 flex justify-center bg-[#F5F5F5] p-4">
-              <button
-                onPointerDown={(e) => {
-                  controls.start(e);
-                }}
-                className="h-2 w-14 cursor-grab touch-none rounded-full bg-neutral-700 active:cursor-grabbing"
-              ></button>
-            </div> */}
             <div className="relative z-0 h-full w-full px-4 py-12">
               {children}
             </div>
