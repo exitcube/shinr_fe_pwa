@@ -1,12 +1,12 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { Header } from "@/components/header/Header";
-import { HomeHeader } from "@/components/header/HomeHeader";
+import { Header } from "./Header";
+import { HomeHeader } from "./HomeHeader";
 
 export const HeaderWrapper = () => {
   const pathname = usePathname();
 
-  const isLoginOrRoot = pathname === "/" || pathname === "/login";
+  const isLoginOrRoot = pathname === "/login" || pathname === "/";
 
   return isLoginOrRoot ? <Header /> : <HomeHeader />;
 };
