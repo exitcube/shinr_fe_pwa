@@ -13,12 +13,12 @@ export const Splash1: React.FC = () => {
           alt="Car Illustration"
           width={300}
           height={200}
-          className="w-72 h-auto"
+          className="w-72 h-auto z-10"
         />
       </div>
 
       {/* Main Text Content */}
-      <div className="text-center">
+      <div className="text-center max-w-xl">
         <h1 className="text-[24px] font-semibold text-gray-800 mb-3">
           Your Car Deserves Better
         </h1>

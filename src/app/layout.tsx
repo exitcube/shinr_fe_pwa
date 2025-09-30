@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <QueryProvider>
-          <div className="relative w-[375px] h-screen bg-[#F5F5F5] bg-image">
+          <div className="relative h-screen ">
             <div className="relative z-10 w-full h-full flex flex-col items-center overflow-hidden">
               <HeaderWrapper />
               {children}

@@ -16,7 +16,7 @@ export const Splash2: React.FC = () => {
       </div>
 
       {/* Main Text Content */}
-      <div className="text-center">
+      <div className="text-center max-w-xl">
         <h1 className="text-[24px] font-bold text-gray-800 mb-3">
           Book in Seconds
         </h1>

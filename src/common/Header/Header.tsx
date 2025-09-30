@@ -3,7 +3,7 @@ import React from "react";
 
 export const Header: React.FC = () => {
   return (
-    <div className="flex items-center justify-center mt-1 w-full shrink-0 p-4 z-1 h-[8%]">
+    <div className="flex items-center justify-center mt-6 w-full shrink-0">
       {" "}
       {/* Placeholder for SHINR Logo - Replace with actual image if available */}
       {/* <Image

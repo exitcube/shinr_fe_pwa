@@ -20,7 +20,7 @@ export const LandingPageContent: React.FC = () => {
 
   return (
     <React.Fragment>
-      <div className="w-full h-[70%] relative overflow-hidden">
+      <div className="w-full h-full md:h-[70%] relative overflow-hidden flex items-center justify-center bg-image">
         <AnimatePresence mode="wait">
           <motion.div
             key={pageCount}
