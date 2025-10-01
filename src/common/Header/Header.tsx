@@ -1,9 +1,16 @@
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 export const Header: React.FC = () => {
+  const path = usePathname();
+  const isLoginPath = path.includes("login");
   return (
-    <div className="flex items-center justify-center gap-2 mt-8 w-full shrink-0">
+    <div
+      className={`flex items-center ${
+        isLoginPath ? "justify-start" : "justify-center"
+      } gap-2 mt-8 w-full shrink-0 px-5`}
+    >
       <Image
         src="/assets/icons/shinr-logo-black.png"
         alt="SHINR Logo"
