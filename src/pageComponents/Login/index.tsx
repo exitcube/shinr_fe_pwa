@@ -3,8 +3,8 @@ import React from "react";
 
 const LoginPageContent: React.FC = () => {
   return (
-    <div className="flex items-center justify-center">
-      <div className="w-[375px] h-[90vh] relative overflow-hidden">
+    <div className="flex items-center justify-center h-full">
+      <div className="w-full relative overflow-hidden px-5 pt-16 h-full">
         <Login />
       </div>
     </div>

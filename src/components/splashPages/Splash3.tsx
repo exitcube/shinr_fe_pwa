@@ -5,22 +5,42 @@ export const Splash3: React.FC = () => {
   return (
     <>
       {/* Illustration Section */}
-      <div className="w-full flex justify-center items-center">
-        <Image
-          src="/assets/illustations/repair_illustration.svg"
-          alt="Car Illustration"
-          width={300}
-          height={200}
-          className="w-full h-auto"
-        />
+      <div className="relative w-full h-full flex items-center justify-center max-h-10/12">
+        <div className="absolute top-10 right-1 -rotate-[60deg] z-10">
+          <Image
+            src="/assets/illustations/tool-hand-right.png"
+            alt="tool-hand-1"
+            width={64}
+            height={100}
+            className="rotate-12 z-10"
+          />
+        </div>
+        <div className="flex w-full justify-center items-center">
+          <Image
+            src="/assets/illustations/repair-main.png"
+            alt="repair Illustration"
+            width={178}
+            height={178}
+            className="z-10"
+          />
+        </div>
+        <div className="absolute bottom-10 left-1 rotate-[60deg] z-10">
+          <Image
+            src="/assets/illustations/tool-hand-left.png"
+            alt="Tool Hand 2"
+            width={64}
+            height={100}
+            className="-rotate-12"
+          />
+        </div>
       </div>
 
       {/* Main Text Content */}
-      <div className="text-center px-4">
-        <h1 className="text-2xl font-bold text-gray-800 mb-3">
+      <div className="text-center px-5 max-w-xl font-poppins">
+        <h1 className="text-2xl font-semibold text-gray-800 mb-3">
           Drive Clean, Drive Smart
         </h1>
-        <p className="text-sm text-gray-600 leading-relaxed mb-4">
+        <p className="text-xs text-[#606060] leading-relaxed mb-4">
           Every WashBee service—whether it’s eco car cleaning or smart car
           repairs—uses sustainable methods that save water, reduce waste, and
           extend vehicle life. Earn WB Cash with every booking and join
