@@ -19,8 +19,8 @@ export const LandingPageContent: React.FC = () => {
   const CurrentSplash = splashScreens[pageCount];
 
   return (
-    <React.Fragment>
-      <div className="w-full h-full md:h-[70%] relative overflow-hidden flex items-center justify-center bg-image">
+    <div className="w-full h-full bg-landing-gradient">
+      <div className="w-full h-full relative overflow-hidden flex flex-col items-center justify-center bg-landing-image">
         <AnimatePresence mode="wait">
           <motion.div
             key={pageCount}
@@ -96,6 +96,6 @@ export const LandingPageContent: React.FC = () => {
           </button>
         )}
       </div>
-    </React.Fragment>
+    </div>
   );
 };
