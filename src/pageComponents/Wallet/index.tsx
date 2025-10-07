@@ -18,12 +18,12 @@ const WalletPageContent = () => {
   return (
     <>
       <motion.div
-        className="max-w-sm mx-auto bg-[#F5F5F5] min-h-screen overflow-y-scroll no-scrollbar pb-30 pt-5"
+        className=" bg-[#F5F5F5] overflow-y-scroll no-scrollbar pb-30 pt-5"
         initial={{ y: 100, opacity: 0, scale: 0.95 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <div className="bg-gray-100 min-h-screen p-4 font-sans">
+        <div className="bg-gray-100 font-sans">
           <WalletBalance />
           <RewardBanner />
 
