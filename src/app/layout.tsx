@@ -37,8 +37,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
         <QueryProvider>
-          <div className="h-screen ">
-            <div className="w-full h-full flex flex-col items-center overflow-hidden">
+          <div className="h-screen w-full">
+            <div className="w-full h-full">
               <HeaderWrapper />
               {children}
               <FooterWrapper />

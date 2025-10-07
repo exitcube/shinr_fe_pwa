@@ -37,7 +37,6 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  justify-content: center;
   background-color: #f5f5f5;
 }
 
@@ -68,4 +67,12 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
