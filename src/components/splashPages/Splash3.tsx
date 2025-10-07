@@ -3,10 +3,10 @@ import React from "react";
 
 export const Splash3: React.FC = () => {
   return (
-    <>
+    <div className="w-full flex flex-col justify-between">
       {/* Illustration Section */}
-      <div className="relative w-full h-full flex items-center justify-center max-h-10/12">
-        <div className="absolute top-10 right-1 -rotate-[60deg] z-10">
+      <div className="relative w-full flex items-center justify-center my-10 max-h-10/12">
+        <div className="absolute -top-8 md:top-0 right-1 -rotate-[60deg] z-10">
           <Image
             src="/assets/illustations/tool-hand-right.png"
             alt="tool-hand-1"
@@ -24,7 +24,7 @@ export const Splash3: React.FC = () => {
             className="z-10"
           />
         </div>
-        <div className="absolute bottom-10 left-1 rotate-[60deg] z-10">
+        <div className="absolute -bottom-8 md:bottom-0 left-1 rotate-[60deg] z-10">
           <Image
             src="/assets/illustations/tool-hand-left.png"
             alt="Tool Hand 2"
@@ -36,11 +36,11 @@ export const Splash3: React.FC = () => {
       </div>
 
       {/* Main Text Content */}
-      <div className="text-center px-5 max-w-xl font-poppins">
+      <div className="flex flex-col items-center justify-center px-5 font-poppins w-full">
         <h1 className="text-2xl font-semibold text-gray-800 mb-3">
           Drive Clean, Drive Smart
         </h1>
-        <p className="text-xs text-[#606060] leading-relaxed mb-4">
+        <p className="text-xs text-[#606060] leading-relaxed mb-4 max-w-xl text-center">
           Every WashBee service—whether it’s eco car cleaning or smart car
           repairs—uses sustainable methods that save water, reduce waste, and
           extend vehicle life. Earn WB Cash with every booking and join
@@ -48,6 +48,6 @@ export const Splash3: React.FC = () => {
           time.
         </p>
       </div>
-    </>
+    </div>
   );
 };

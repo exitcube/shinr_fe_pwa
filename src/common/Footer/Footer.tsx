@@ -6,7 +6,6 @@ import {
   Wallet01Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { label } from "framer-motion/client";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
