@@ -8,5 +8,8 @@ export const HeaderWrapper = () => {
 
   const isLoginOrRoot = pathname === "/login" || pathname === "/";
 
+  const isSplash = pathname.startsWith("/splash");
+  if (isSplash) return null;
+
   return isLoginOrRoot ? <Header /> : <HomeHeader />;
 };

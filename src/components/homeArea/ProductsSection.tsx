@@ -48,12 +48,10 @@ const products = [
 export const ProductsSection: React.FC = () => {
   return (
     <>
-      <div className="container mx-auto px-4 py-8 md:py-4 font-sans">
+      <div className="container mx-auto p-4 md:py-4 font-poppins">
         {/* Section Header */}
         <div className="flex justify-between items-center mb-2">
-          <h3 className="text-lg font-semibold text-[#101010]">
-            Products
-          </h3>
+          <h3 className="text-lg font-semibold text-[#101010]">Products</h3>
           <a
             href="#"
             className="text-sm text-teal-600 hover:text-teal-800 font-semibold flex items-center group"

@@ -7,5 +7,8 @@ export const FooterWrapper = () => {
 
   const isLoginOrRoot = pathname === "/" || pathname === "/login";
 
+  const isSplash = pathname.startsWith("/splash");
+  if (isSplash) return null;
+
   return isLoginOrRoot ? <></> : <Footer />;
 };

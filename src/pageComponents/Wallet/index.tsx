@@ -23,7 +23,7 @@ const WalletPageContent = () => {
         animate={{ y: 0, opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <div className="bg-gray-100 font-sans">
+        <div className="bg-gray-100 font-poppins">
           <WalletBalance />
           <RewardBanner />
 
