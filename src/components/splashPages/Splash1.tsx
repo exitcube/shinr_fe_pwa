@@ -3,7 +3,7 @@ import React from "react";
 
 export const Splash1: React.FC = () => {
   return (
-    <div className="w-full h-full flex flex-col justify-between  md:min-h-[800px]">
+    <div className="w-full h-full flex flex-col justify-between gap-16 md:min-h-[800px]">
       <div className="relative w-full h-full flex justify-center items-center max-h-10/12">
         <div className="flex w-full justify-center items-center ">
           <Image
@@ -35,7 +35,7 @@ export const Splash1: React.FC = () => {
       </div>
 
       {/* Main Text Content */}
-      <div className="flex flex-col items-center justify-center px-5 font-poppins w-full">
+      <div className="flex flex-col items-center justify-center px-5 font-poppins w-full ">
         <h1 className="text-2xl font-semibold text-gray-800 mb-3">
           Your Car Deserves Better
         </h1>

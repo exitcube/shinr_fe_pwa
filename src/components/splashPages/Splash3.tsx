@@ -3,7 +3,7 @@ import React from "react";
 
 export const Splash3: React.FC = () => {
   return (
-    <div className="w-full flex flex-col justify-between">
+    <div className="w-full flex flex-col justify-between gap-16">
       {/* Illustration Section */}
       <div className="relative w-full flex items-center justify-center my-10 max-h-10/12">
         <div className="absolute -top-8 md:top-0 right-1 -rotate-[60deg] z-10">

@@ -3,7 +3,7 @@ import React from "react";
 
 const ServiceBookingHeader: React.FC = () => {
   return (
-    <div className="bg-gray-100 font-sans flex items-center relative h-10">
+    <div className="bg-gray-100 font-poppins flex items-center relative h-10">
       <Image
         className="absolute left-0"
         src="/assets/icons/backButton.svg"

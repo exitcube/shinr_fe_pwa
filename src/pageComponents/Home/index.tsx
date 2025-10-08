@@ -10,7 +10,7 @@ import React from "react";
 
 const HomePageContent = () => {
   return (
-    <div className=" bg-[#F5F5F5] no-scrollbar pb-30 pt-5">
+    <div className=" bg-[#F5F5F5] no-scrollbar pb-16 pt-5">
       {/* Main Banner */}
       <FadeInSection>
         <MainBanner />

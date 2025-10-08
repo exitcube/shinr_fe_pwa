@@ -4,11 +4,11 @@ import React from "react";
 const ServiceBookingDetails: React.FC = () => {
   return (
     <>
-      <div className="pt-[24px]  font-sans flex justify-between">
+      <div className="pt-[24px]  font-poppins flex justify-between">
         <h1 className="text-[16px] font-semibold text-[#101010]">
           Service Details
         </h1>
-        <div className="font-sans flex items-center gap-1 ">
+        <div className=" flex items-center gap-1 ">
           <h1 className="text-[12px] font-medium">Edit</h1>
           <Image
             className="flex"
@@ -19,7 +19,7 @@ const ServiceBookingDetails: React.FC = () => {
           />
         </div>
       </div>
-      <div className="pt-[6px] font-sans flex gap-3">
+      <div className="pt-[6px] font-poppins flex gap-3">
         <div className="bg-white rounded-lg flex-col p-4 w-[20%] flex items-center justify-center">
           <div>
             <h6 className="text-[14px] font-normal text-[#878787]">Sat</h6>

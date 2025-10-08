@@ -44,7 +44,7 @@ export const ServiceSection: React.FC<ServiceSectionProps> = ({
 }) => {
   return (
     <>
-      <div className={` ${showHeading ? "px-4" : "px-0"}  mb-4 font-poppins`}>
+      <div className={` ${showHeading ? "px-4" : "px-0"} pb-6 font-poppins`}>
         {showHeading && (
           <div className="flex justify-between items-center mb-3">
             <h3 className="font-semibold text-[#101010] ">Service</h3>
