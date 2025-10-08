@@ -48,7 +48,7 @@ const vendors = [
 export const VendorsSection: React.FC = () => {
   return (
     <>
-      <div className="container mx-auto px-4 py-4 md:py-4 font-sans">
+      <div className="container mx-auto px-4 font-poppins">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-[#101010]">Vendors</h3>
           <a

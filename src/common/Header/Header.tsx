@@ -1,20 +1,23 @@
-// import Image from "next/image";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 export const Header: React.FC = () => {
+  const path = usePathname();
+  const isLoginPath = path.includes("login");
   return (
-    <div className="flex items-center justify-center mt-1 w-full shrink-0 p-4 z-1 h-[8%]">
-      {" "}
-      {/* Placeholder for SHINR Logo - Replace with actual image if available */}
+    <div
+      className={`flex items-center ${
+        isLoginPath ? "justify-start" : "justify-center"
+      } gap-2 mt-8 w-full shrink-0 px-5`}
+    >
       <Image
-        src="/assets/logo/sr_logo_black.png"
-        alt="icon"
-        width={86}
-        height={86}
-        className="mr-1"
+        src="/assets/icons/shinr-logo-black.png"
+        alt="SHINR Logo"
+        className="h-7 w-20 rounded-full"
+        width={81}
+        height={28}
       />
-      {/* <span className="text-xl font-bold text-gray-800">SHINR</span> */}
     </div>
   );
 };

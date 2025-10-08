@@ -44,7 +44,7 @@ const articles = [
 export const ShineSection: React.FC = () => {
   return (
     <>
-      <div className="container mx-auto px-4 py-4 md:py-4 font-sans">
+      <div className="container mx-auto px-4 py-4 md:py-4 font-poppins">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-lg font-semibold text-[#101010]"> Why Shinr</h3>
           <a
