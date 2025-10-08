@@ -37,12 +37,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
         <QueryProvider>
-          <div className="h-screen w-full">
-            <div className="w-full h-full">
-              <HeaderWrapper />
-              {children}
-              <FooterWrapper />
-            </div>
+          <div className="min-h-screen w-full flex flex-col">
+            <HeaderWrapper />
+            <main className="flex-1">{children}</main>
+            <FooterWrapper />
           </div>
         </QueryProvider>
       </body>

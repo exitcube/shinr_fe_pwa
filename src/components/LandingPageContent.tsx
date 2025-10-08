@@ -54,14 +54,14 @@ export const LandingPageContent: React.FC = () => {
         {/* Arrow Button */}
         {pageCount !== 2 ? (
           <button
-            className="absolute bottom-0 bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 animate-bounce hover:animate-none"
+            className="absolute bottom-4 bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 animate-bounce hover:animate-none"
             onClick={handleCount}
           >
             <ArrowRight />
           </button>
         ) : (
           <button
-            className="absolute bottom-0 bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 w-[85%] flex items-center justify-between"
+            className="absolute bottom-4 bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 w-[85%] flex items-center justify-between"
             onClick={() => router.push("/login")}
           >
             <div>

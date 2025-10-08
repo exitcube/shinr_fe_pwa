@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 export const Splash2: React.FC = () => {
   return (
-    <div className="w-full h-full flex flex-col justify-between  md:min-h-[700px]">
+    <div className="w-full h-full flex flex-col justify-between gap-16 md:min-h-[700px]">
       {/* Illustration Section */}
       <div className="relative w-full h-full flex justify-center items-center my-10 max-h-10/12">
         <Image
