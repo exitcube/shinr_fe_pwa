@@ -1,8 +1,7 @@
-// app/page.js or pages/index.js (depending on your Next.js version)
 import ServiceProviderCard from "@/components/ServiceBooking/ServiceProviders/ServiceProviderCard";
 import { ServiceProvider } from "@/types/wallet";
 
-export default function Home() {
+export default function ServiceProviders() {
   const serviceProviders: ServiceProvider[] = [
     {
       id: 1,
