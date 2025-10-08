@@ -5,22 +5,13 @@ export const HomeHeader: React.FC = () => {
   return (
     <div className="flex items-center justify-between w-full p-2 bg-gray-50 border-b border-gray-200 font-sans">
       <div className="flex items-center">
-        <svg
-          width="36"
-          height="36"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="text-green-500"
-        >
-          <path
-            d="M5 13L9 17L19 7"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+        <Image
+            src="/assets/logo/sr_logo.png"
+            alt="icon"
+            width={26}
+            height={26}
+            className="mr-1"
           />
-        </svg>
       </div>
       <div className="flex items-center">
         {/* Location Display */}

@@ -6,6 +6,7 @@ export const FooterWrapper = () => {
   const pathname = usePathname();
 
   const isLoginOrRoot = pathname === "/" || pathname === "/login";
+  const isService = pathname === "/service-booking";
 
-  return isLoginOrRoot ? <></> : <Footer />;
+  return isLoginOrRoot || isService ? <></> : <Footer />;
 };

@@ -8,14 +8,14 @@ export const Footer: React.FC = () => {
     <>
       {/* Bottom Navigation */}
       <div className="h-[10%] absolute bottom-0 bg-white rounded-t-lg flex justify-around items-center w-full z-9 shadow-2xs">
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full shadow-md rotate-170 z-8">
+        {/* <div className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full shadow-md rotate-170 z-8">
           <Image
             src="/assets/icons/footerPart.png"
             alt="icon"
             width={100}
             height={100}
           />
-        </div>
+        </div> */}
 
         <button
           className="flex flex-col items-center text-gray-800 z-10 pt-2"

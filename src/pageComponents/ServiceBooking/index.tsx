@@ -18,6 +18,8 @@ const ServiceBookingPageContent = () => {
       <ServiceBookingHeader />
       {/*Service details section  */}
       <ServiceBookingDetails />
+      {/*Service Section*/}
+      <BookingServices />
       {/*Service booking banner section */}
       <div className="pt-4">
         {/* <Image src="/assets/images/happy_customer_container.png" alt="image" width={500} height={40} /> */}
@@ -46,8 +48,6 @@ const ServiceBookingPageContent = () => {
           </p>
         </div>
       </div>
-      {/*Service Section*/}
-      <BookingServices />
     </motion.div>
   );
 };
