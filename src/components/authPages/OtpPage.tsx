@@ -25,7 +25,7 @@ export const OtpPage: React.FC<IProps> = ({ mobile }) => {
   };
 
   return (
-    <div className="flex items-center max-h-screen h-full">
+    <div className="flex items-center max-h-screen h-full max-w-lg">
       <AnimatePresence mode="wait">
         <motion.div
           initial={{ opacity: 0, x: 50 }}

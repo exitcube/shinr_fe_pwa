@@ -35,7 +35,7 @@ const LoginForm: React.FC<IProps> = ({
 
   return (
     <div
-      className="flex items-center max-h-screen h-full"
+      className="flex items-center max-h-screen h-full max-w-lg"
       style={{ background: "#F5F5F5" }}
     >
       <AnimatePresence mode="wait">
