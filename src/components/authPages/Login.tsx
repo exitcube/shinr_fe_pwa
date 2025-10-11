@@ -15,12 +15,10 @@ export const Login: React.FC = () => {
   const handleLogin = async (payload: ILoginPayload) => {
     sendOtp(payload, {
       onSuccess: (data) => {
-        console.log("OTP sent successfully:", data);
         setOtpToken(data.otpToken);
         setShowOtp(true);
       },
       onError: (error) => {
-        console.error("Error sending OTP:", error);
         setOtpToken("");
         setShowOtp(false);
       },
