@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api", // fallback for dev
-    timeout: 10000, // 10s timeout
-    headers: {
-        "Content-Type": "application/json",
-    },
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  timeout: 10000, // 10s timeout
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 // Add request interceptor (e.g., add auth token)
@@ -22,14 +22,14 @@ const API = axios.create({
 
 // Add response interceptor (e.g., handle errors globally)
 API.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        if (error.response?.status === 401) {
-            // optional: logout user / redirect to login
-            console.warn("Unauthorized, redirecting to login...");
-        }
-        return Promise.reject(error);
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // optional: logout user / redirect to login
+      console.warn("Unauthorized, redirecting to login...");
     }
+    return Promise.reject(error);
+  }
 );
 
 export default API;
