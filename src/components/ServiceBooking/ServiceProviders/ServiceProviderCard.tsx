@@ -1,70 +1,67 @@
 import { ServiceProvider } from "@/types/wallet";
+import { MapPin, Briefcase, Star } from "lucide-react";
+import Image from "next/image";
 
 interface ServiceProviderCardProps {
   provider: ServiceProvider;
+  onClick?: () => void;
 }
 
 export default function ServiceProviderCard({
   provider,
+  onClick,
 }: ServiceProviderCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-      <div className="p-6">
-        {/* Service Provider Name */}
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">
-          {provider.name}
-        </h3>
-
-        {/* Distance */}
-        <div className="flex items-center text-gray-600 mb-1">
-          <svg
-            className="h-4 w-4 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+    <div 
+      onClick={onClick}
+      className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden cursor-pointer"
+    >
+      <div className="flex gap-3 p-3">
+        {/* Car Image */}
+        <div className="flex-shrink-0">
+          <div className="w-20 h-20 rounded-xl overflow-hidden bg-gray-100">
+            <Image
+              src={provider.imageUrl}
+              alt={provider.name}
+              width={80}
+              height={80}
+              className="w-full h-full object-cover"
             />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
-          <span className="text-sm">{provider.distance}</span>
+          </div>
         </div>
 
-        {/* Years in Business */}
-        <div className="flex items-center text-gray-600 mb-4">
-          <svg
-            className="h-4 w-4 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-            />
-          </svg>
-          <span className="text-sm">{provider.yearsInBusiness}</span>
-        </div>
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          {/* Name and Rating */}
+          <div className="flex items-start justify-between mb-1.5">
+            <h3 className="text-base font-semibold text-[#101010]">
+              {provider.name}
+            </h3>
+            <div className="flex items-center gap-1 bg-white px-1.5 py-0.5 rounded">
+              <Star size={14} className="text-yellow-500 fill-yellow-500" />
+              <span className="text-sm font-medium text-[#101010]">{provider.rating}</span>
+            </div>
+          </div>
 
-        {/* Price */}
-        <div className="flex items-center justify-between">
-          <span className="text-2xl font-bold text-gray-900">
-            {provider.price}
-          </span>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
-            Book Now
-          </button>
+          {/* Distance */}
+          <div className="flex items-center text-[#128C7E] mb-1">
+            <MapPin size={14} className="mr-1.5 flex-shrink-0" />
+            <span className="text-xs">{provider.distance}</span>
+          </div>
+
+          {/* Years in Business */}
+          <div className="flex items-center text-[#128C7E] mb-2">
+            <Briefcase size={14} className="mr-1.5 flex-shrink-0" />
+            <span className="text-xs">{provider.yearsInBusiness}</span>
+          </div>
+
+          {/* Price */}
+          <div className="flex items-center">
+            <span className="text-[#128C7E] font-bold text-base">
+              ₹ {provider.price}
+            </span>
+            <span className="text-gray-400 text-xs ml-1">/Service</span>
+          </div>
         </div>
       </div>
     </div>
