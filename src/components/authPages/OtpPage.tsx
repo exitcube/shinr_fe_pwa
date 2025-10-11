@@ -1,14 +1,13 @@
 "use client";
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { OtpFormData, otpSchema } from "@/app/validation/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export const OtpPage: React.FC<IProps> = ({ mobile }) => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const {
     handleSubmit,

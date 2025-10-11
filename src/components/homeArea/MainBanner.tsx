@@ -49,7 +49,7 @@ export const MainBanner: React.FC = () => {
       const offsetWidth = carouselRef.current.offsetWidth;
       setWidth(scrollWidth - offsetWidth);
     }
-  }, [promoCardsData]);
+  }, []);
 
   return (
     <div className="flex-grow">

@@ -9,6 +9,7 @@ export const Login: React.FC = () => {
   const [showOtp, setShowOtp] = useState(false);
   const [mobile, setMobile] = React.useState("");
   const [otpToken, setOtpToken] = useState("");
+  console.log("🚀 ~ Login ~ otpToken:", otpToken);
 
   const { mutate: sendOtp, isPending } = useLoginMutation();
 
@@ -19,6 +20,7 @@ export const Login: React.FC = () => {
         setShowOtp(true);
       },
       onError: (error) => {
+        console.log("🚀 ~ handleLogin ~ error:", error);
         setOtpToken("");
         setShowOtp(false);
       },
