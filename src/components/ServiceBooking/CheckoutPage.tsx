@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { ArrowLeft, Star, MapPin, Calendar, Clock, Edit2, Copy, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { PaymentTypes } from "../walletArea/PaymentType";
 
 interface CheckoutPageProps {
   onBack: () => void;
@@ -9,6 +10,15 @@ interface CheckoutPageProps {
 
 const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
   const [couponCode, setCouponCode] = useState("");
+  const [openPayment, setOpenPayment] = useState(false);
+
+  const handlePayClick = () => {
+    setOpenPayment(true);
+  };
+
+  if (openPayment) {
+    return <PaymentTypes setOpenPayment={setOpenPayment} />;
+  }
 
   return (
     <div className="fixed inset-0 bg-[#F5F5F5] z-50 flex flex-col font-poppins">
@@ -255,7 +265,10 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
             <p className="text-xs text-gray-500 mb-1">Payment Method</p>
             <h4 className="text-lg font-semibold text-[#101010]">Google pay</h4>
           </div>
-          <button className="bg-[#128C7E] text-white px-8 py-3 rounded-full text-base font-medium hover:bg-[#0f7269] transition-colors flex items-center gap-2">
+          <button 
+            onClick={handlePayClick}
+            className="bg-[#128C7E] text-white px-8 py-3 rounded-full text-base font-medium hover:bg-[#0f7269] transition-colors flex items-center gap-2"
+          >
             Pay ₹ 489
             <ArrowRight size={18} />
           </button>

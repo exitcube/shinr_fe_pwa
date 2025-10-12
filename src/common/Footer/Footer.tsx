@@ -79,7 +79,7 @@ const footerButtons = [
   },
   {
     icon: TireIcon,
-    route: "/vehicle",
+    route: "/vehicles",
     size: 35,
     label: "Vehicle",
   },
