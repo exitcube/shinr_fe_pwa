@@ -3,9 +3,10 @@ import React from "react";
 
 interface ServiceProvidersHeaderProps {
     onBack: () => void;
+    title: string;
 }
 
-const ServiceProvidersHeader: React.FC<ServiceProvidersHeaderProps> = ({onBack}) => {
+const ServiceProvidersHeader: React.FC<ServiceProvidersHeaderProps> = ({onBack, title}) => {
     return (
         <div className="bg-gray-100 font-poppins flex items-center relative h-10">
             <Image
@@ -17,7 +18,7 @@ const ServiceProvidersHeader: React.FC<ServiceProvidersHeaderProps> = ({onBack})
                 onClick={onBack}
             />
             <h1 className="text-[16px] font-normal text-[#101010] mx-auto">
-                Service Providers
+                {title}
             </h1>
         </div>
     );

@@ -3,9 +3,10 @@ import { useState } from "react";
 import ServiceProviderCard from "@/components/ServiceBooking/ServiceProviders/ServiceProviderCard";
 import ServiceProviderDetail from "@/components/ServiceBooking/ServiceProviders/ServiceProviderDetail";
 import { ServiceProvider } from "@/types/wallet";
-import { Search, SlidersHorizontal, ArrowLeft } from "lucide-react";
+import { Search, SlidersHorizontal } from "lucide-react";
+import ServiceProvidersHeader from "./ServiceProvidersHeader";
 
-export default function ServiceProviders() {
+export default function ServiceProviders({ onBack }: { onBack: () => void }) {
   const [selectedProvider, setSelectedProvider] = useState<ServiceProvider | null>(null);
 
   const serviceProviders: ServiceProvider[] = [
@@ -204,18 +205,9 @@ export default function ServiceProviders() {
     return (
       <div className="flex flex-col h-full">
         {/* Back Button Header */}
-        <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
-          <button
-            onClick={handleBack}
-            className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <ArrowLeft size={24} className="text-[#101010]" />
-          </button>
-          <h1 className="text-lg font-medium text-[#101010]">Service Details</h1>
-        </div>
 
         <div className="flex-1 overflow-hidden">
-          <ServiceProviderDetail provider={selectedProvider} />
+          <ServiceProviderDetail provider={selectedProvider} onBack={handleBack} />
         </div>
       </div>
     );
@@ -223,6 +215,10 @@ export default function ServiceProviders() {
 
   return (
     <div className="flex flex-col h-full bg-[#F5F5F5]">
+      <div className="p-4">
+
+        <ServiceProvidersHeader onBack={onBack} title="Service Providers" />
+      </div>
       {/* Service Providers List */}
       <div className="flex-1 overflow-y-auto px-4 pt-4 pb-24">
         <div className="space-y-4">

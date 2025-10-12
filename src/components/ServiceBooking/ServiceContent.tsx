@@ -90,23 +90,14 @@ const ServiceContent: React.FC<ServiceContentProps> = ({ serviceType, onBack }) 
   return (
     <div className="fixed inset-0 bg-white z-50 flex flex-col font-poppins">
       {/* Header */}
-      {/* <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
-        <button 
-          onClick={onBack}
-          className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-        >
-          <ArrowLeft size={24} className="text-[#101010]" />
-        </button>
-        <h1 className="text-lg font-medium text-[#101010]">Service Providers</h1>
-      </div> */}
-      <div className="p-4">
+      {/* <div className="p-4">
 
-        <ServiceProvidersHeader onBack={onBack} />
-      </div>
+        <ServiceProvidersHeader onBack={onBack} title="Service Providers" />
+      </div> */}
 
       {/* Content - ServiceProviders */}
       <div className="flex-1 overflow-hidden">
-        <ServiceProviders />
+        <ServiceProviders onBack={onBack} />
       </div>
     </div>
   );
