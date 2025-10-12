@@ -6,6 +6,8 @@ import Image from "next/image";
 import ServicesTap from "./ServiceTabs/ServicesTap";
 import ProductsTap from "./ServiceTabs/productsTap";
 import ReviewsTap from "./ServiceTabs/reviewsTabs";
+import ServiceAddonsModal from "./ServiceAddonsModal";
+import CheckoutPage from "../CheckoutPage";
 
 interface ServiceProviderDetailProps {
   provider: ServiceProvider;
@@ -17,6 +19,28 @@ export default function ServiceProviderDetail({
   onBack,
 }: ServiceProviderDetailProps) {
   const [activeTab, setActiveTab] = useState<"services" | "products" | "reviews">("services");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
+
+  const handleBookService = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCheckout = () => {
+    setShowCheckout(true);
+  };
+
+  const handleBackFromCheckout = () => {
+    setShowCheckout(false);
+  };
+
+  if (showCheckout) {
+    return <CheckoutPage onBack={handleBackFromCheckout} />;
+  }
 
   return (
     <div className="flex flex-col h-full bg-white font-poppins overflow-y-auto pb-20">
@@ -36,6 +60,7 @@ export default function ServiceProviderDetail({
             src={provider.imageUrl}
             alt={provider.name}
             fill
+            sizes="(max-width: 768px) 100vw, 400px"
             className="object-cover"
           />
           {/* Favorite icon overlay */}
@@ -135,11 +160,22 @@ export default function ServiceProviderDetail({
 
       {/* Bottom Action Button */}
       <div className="fixed bottom-0 left-0 right-0 bg-white px-4 py-3 shadow-[0_-2px_10px_rgba(0,0,0,0.1)]">
-        <button className="w-full bg-[#128C7E] text-white py-3 rounded-full font-medium text-sm hover:bg-[#0f7269] transition-colors flex items-center justify-between px-4">
+        <button 
+          onClick={handleBookService}
+          className="w-full bg-[#128C7E] text-white py-3 rounded-full font-medium text-sm hover:bg-[#0f7269] transition-colors flex items-center justify-between px-4"
+        >
           <span>Book Basic Wash</span>
           <ArrowRight size={18} />
         </button>
       </div>
+
+      {/* Service Add-ons Modal */}
+      <ServiceAddonsModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        serviceName="Basic Wash"
+        onCheckout={handleCheckout}
+      />
     </div>
   );
 }
