@@ -113,22 +113,22 @@ const ScheduleServiceModal: React.FC<ScheduleServiceModalProps> = ({
         >
           {/* Required Date */}
           <div className="mb-6">
-            <h3 className="text-base font-semibold text-[#101010] mb-3">
+            <h3 className="text-sm font-semibold text-[#101010] mb-3">
               Required Date
             </h3>
-            <div className="flex gap-2 overflow-x-auto pb-2">
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
               {dateSlots.map((slot, index) => (
                 <button
                   key={index}
                   onClick={() => selectDate(index)}
-                  className={`flex-shrink-0 flex flex-col items-center justify-center w-16 h-16 rounded-lg transition-all ${
+                  className={`flex-shrink-0 flex flex-col items-center justify-center w-14 h-16 rounded-xl transition-all ${
                     slot.selected
                       ? "bg-[#128C7E] text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      : "bg-white text-gray-700 border border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <span className="text-xs font-medium">{slot.day}</span>
-                  <span className="text-lg font-semibold">{slot.date}</span>
+                  <span className="text-xs font-medium mb-1">{slot.day}</span>
+                  <span className="text-lg font-bold">{slot.date}</span>
                 </button>
               ))}
             </div>
@@ -136,7 +136,7 @@ const ScheduleServiceModal: React.FC<ScheduleServiceModalProps> = ({
 
           {/* Available Time Slot */}
           <div>
-            <h3 className="text-base font-semibold text-[#101010] mb-3">
+            <h3 className="text-sm font-semibold text-[#101010] mb-3">
               Available Time slot
             </h3>
             <div className="grid grid-cols-4 gap-2">
@@ -145,12 +145,12 @@ const ScheduleServiceModal: React.FC<ScheduleServiceModalProps> = ({
                   key={index}
                   onClick={() => selectTime(index)}
                   disabled={!slot.available}
-                  className={`py-2 px-3 rounded-lg text-xs font-medium transition-all ${
+                  className={`py-2.5 px-2 rounded-full text-xs font-medium transition-all ${
                     slot.selected
                       ? "bg-[#128C7E] text-white"
                       : slot.available
-                      ? "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      : "bg-gray-50 text-gray-300 cursor-not-allowed"
+                      ? "bg-white text-gray-700 border border-gray-200 hover:border-gray-300"
+                      : "bg-white text-gray-300 border border-gray-100 cursor-not-allowed"
                   }`}
                 >
                   {slot.time}
@@ -164,7 +164,7 @@ const ScheduleServiceModal: React.FC<ScheduleServiceModalProps> = ({
         <div className="px-6 py-4 border-t border-gray-200 bg-white">
           <button 
             onClick={onCheckout}
-            className="w-full bg-[#128C7E] text-white py-3 rounded-full font-medium text-sm hover:bg-[#0f7269] transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-[#128C7E] text-white py-3 rounded-full font-medium text-sm hover:bg-[#0f7269] transition-colors flex items-center justify-between px-6"
           >
             <span>Check Out</span>
             <ArrowRight size={18} />

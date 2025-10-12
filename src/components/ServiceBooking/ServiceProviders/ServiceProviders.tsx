@@ -5,9 +5,12 @@ import ServiceProviderDetail from "@/components/ServiceBooking/ServiceProviders/
 import { ServiceProvider } from "@/types/wallet";
 import { Search, SlidersHorizontal } from "lucide-react";
 import ServiceProvidersHeader from "./ServiceProvidersHeader";
+import Image from "next/image";
+import FilterModal from "./FilterModal/FilterModal";
 
 export default function ServiceProviders({ onBack }: { onBack: () => void }) {
   const [selectedProvider, setSelectedProvider] = useState<ServiceProvider | null>(null);
+  const [showFilterModal, setShowFilterModal] = useState(false);
 
   const serviceProviders: ServiceProvider[] = [
     {
@@ -246,11 +249,25 @@ export default function ServiceProviders({ onBack }: { onBack: () => void }) {
           </div>
 
           {/* Filter Button */}
-          <button className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            <SlidersHorizontal size={20} className="text-gray-600" />
+          <button 
+            onClick={() => setShowFilterModal(true)}
+            className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <Image
+              src="/assets/icons/filter.svg"
+              alt="icon"
+              width={20}
+              height={20}
+            />
           </button>
         </div>
       </div>
+
+      {/* Filter Modal */}
+      <FilterModal 
+        isOpen={showFilterModal} 
+        onClose={() => setShowFilterModal(false)} 
+      />
     </div>
   );
 }

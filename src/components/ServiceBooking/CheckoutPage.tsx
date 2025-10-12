@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { ArrowLeft, Star, MapPin, Calendar, Clock, Edit2, Copy, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { PaymentTypes } from "../walletArea/PaymentType";
+import { WalletModel } from "../walletArea/WalletModeal";
 
 interface CheckoutPageProps {
   onBack: () => void;
@@ -11,13 +12,22 @@ interface CheckoutPageProps {
 const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
   const [couponCode, setCouponCode] = useState("");
   const [openPayment, setOpenPayment] = useState(false);
+  const [openWallet, setOpenWallet] = useState(false);
 
   const handlePayClick = () => {
     setOpenPayment(true);
   };
 
+  const handleAddMoney = () => {
+    setOpenWallet(true);
+  };
+
+  const handleClosePayment = () => {
+    setOpenPayment(false);
+  };
+
   if (openPayment) {
-    return <PaymentTypes setOpenPayment={setOpenPayment} />;
+    return <PaymentTypes setOpenPayment={handleClosePayment} />;
   }
 
   return (
@@ -254,7 +264,10 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
           <h3 className="text-lg font-semibold text-[#101010]">
             Shinr Wallet: ₹0
           </h3>
-          <button className="text-[#128C7E] text-sm font-medium flex items-center gap-1">
+          <button 
+            onClick={handleAddMoney}
+            className="text-[#128C7E] text-sm font-medium flex items-center gap-1"
+          >
             Add Money
             <ArrowRight size={16} />
           </button>
@@ -274,6 +287,9 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
           </button>
         </div>
       </div>
+
+      {/* Wallet Modal */}
+      <WalletModel open={openWallet} setOpen={setOpenWallet} />
     </div>
   );
 };
