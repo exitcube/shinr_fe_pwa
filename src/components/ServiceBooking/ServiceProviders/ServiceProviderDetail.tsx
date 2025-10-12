@@ -3,9 +3,9 @@ import { useState } from "react";
 import { ServiceProvider } from "@/types/wallet";
 import { MapPin, Briefcase, Star, ArrowRight, ArrowLeft } from "lucide-react";
 import Image from "next/image";
-import ServicesTap from "./ServiceTabs/ServicesTap";
-import ProductsTap from "./ServiceTabs/productsTap";
-import ReviewsTap from "./ServiceTabs/reviewsTabs";
+import ServicesTab from "./ServiceTabs/ServicesTabs";
+import ProductsTab from "./ServiceTabs/productsTabs";
+import ReviewsTab from "./ServiceTabs/reviewsTabs";
 import ServiceAddonsModal from "./ServiceAddonsModal";
 import CheckoutPage from "../CheckoutPage";
 
@@ -106,7 +106,7 @@ export default function ServiceProviderDetail({
             {/* Price */}
             <div className="flex items-baseline pt-1">
               <span className="text-[#128C7E] font-bold text-lg">₹ {provider.price}</span>
-              <span className="text-gray-400 text-xs ml-1">Starts from</span>
+              <span className="text-gray-400 text-xs ml-1">/Basic Wash</span>
             </div>
           </div>
         </div>
@@ -147,15 +147,15 @@ export default function ServiceProviderDetail({
 
       {/* Services List */}
       {activeTab === "services" && (
-        <ServicesTap provider={provider} />
+        <ServicesTab provider={provider} />
       )}
 
       {activeTab === "products" && (
-        <ProductsTap provider={provider} />
+        <ProductsTab provider={provider} />
       )}
 
       {activeTab === "reviews" && (
-        <ReviewsTap provider={provider} />
+        <ReviewsTab provider={provider} />
       )}
 
       {/* Bottom Action Button */}

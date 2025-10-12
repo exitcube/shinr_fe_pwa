@@ -13,6 +13,12 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
   const [couponCode, setCouponCode] = useState("");
   const [openPayment, setOpenPayment] = useState(false);
   const [openWallet, setOpenWallet] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<{ name: string; price: number } | null>(null);
+
+  const baseAmount = 239;
+  const appFee = 10;
+  const subscriptionAmount = selectedPlan ? selectedPlan.price : 0;
+  const totalAmount = baseAmount + appFee + subscriptionAmount;
 
   const handlePayClick = () => {
     setOpenPayment(true);
@@ -20,6 +26,14 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
 
   const handleAddMoney = () => {
     setOpenWallet(true);
+  };
+
+  const handleSelectPlan = (planName: string, price: number) => {
+    setSelectedPlan({ name: planName, price });
+  };
+
+  const handleRemovePlan = () => {
+    setSelectedPlan(null);
   };
 
   const handleClosePayment = () => {
@@ -170,9 +184,23 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
               <span className="text-gray-600">App fee</span>
               <span className="text-gray-900">₹ 10</span>
             </div>
+            {selectedPlan && (
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600">{selectedPlan.name}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-900">₹ {selectedPlan.price}</span>
+                  <button
+                    onClick={handleRemovePlan}
+                    className="text-red-500 hover:text-red-700 text-xs"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            )}
             <div className="flex justify-between pt-2 border-t border-gray-200 font-semibold">
               <span className="text-[#101010]">Total Amount</span>
-              <span className="text-[#101010] text-base">₹ 489</span>
+              <span className="text-[#101010] text-base">₹ {totalAmount}</span>
             </div>
           </div>
         </div>
@@ -181,8 +209,8 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
         <div className="mt-3">
           <div className="overflow-x-auto px-4 scrollbar-hide">
             <div className="flex gap-3 pb-2">
-            {/* Basic Subscription */}
-            <div className="bg-white rounded-lg p-4 shadow-sm flex-shrink-0 w-64 flex flex-col h-64">
+              {/* Basic Subscription */}
+              <div className="bg-white rounded-lg p-4 shadow-sm flex-shrink-0 w-64 flex flex-col h-64">
               <h3 className="text-base font-semibold text-[#101010] mb-2">
                 Basic Subscription
               </h3>
@@ -195,14 +223,18 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
                 <li>• Free pick-up & drop</li>
                 <li>• ₹100 off on emergency services</li>
               </ul>
-              <button className="w-full bg-[#128C7E] text-white py-2.5 rounded-full text-sm font-medium hover:bg-[#0f7269] transition-colors flex items-center justify-center gap-2">
-                <span>Select Plan</span>
+              <button 
+                onClick={() => handleSelectPlan("Basic Subscription", 499)}
+                className={`w-full py-2.5 rounded-full text-sm font-medium transition-colors flex items-center justify-center gap-2 ${selectedPlan?.name === "Basic Subscription" ? "bg-gray-400 text-white cursor-not-allowed" : "bg-[#128C7E] text-white hover:bg-[#0f7269]"}`}
+                disabled={selectedPlan?.name === "Basic Subscription"}
+              >
+                <span>{selectedPlan?.name === "Basic Subscription" ? "Selected" : "Select Plan"}</span>
                 <ArrowRight size={16} />
               </button>
-            </div>
+              </div>
 
-            {/* Premium Subscription */}
-            <div className="bg-white rounded-lg p-4 shadow-sm flex-shrink-0 w-64 flex flex-col h-64">
+              {/* Premium Subscription */}
+              <div className="bg-white rounded-lg p-4 shadow-sm flex-shrink-0 w-64 flex flex-col h-64">
               <h3 className="text-base font-semibold text-[#101010] mb-2">
                 Premium Subscription
               </h3>
@@ -215,14 +247,18 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
                 <li>• Priority customer support</li>
                 <li>• Free interior sanitization once/month</li>
               </ul>
-              <button className="w-full bg-[#128C7E] text-white py-2.5 rounded-full text-sm font-medium hover:bg-[#0f7269] transition-colors flex items-center justify-center gap-2">
-                <span>Select Plan</span>
+              <button 
+                onClick={() => handleSelectPlan("Premium Subscription", 899)}
+                className={`w-full py-2.5 rounded-full text-sm font-medium transition-colors flex items-center justify-center gap-2 ${selectedPlan?.name === "Premium Subscription" ? "bg-gray-400 text-white cursor-not-allowed" : "bg-[#128C7E] text-white hover:bg-[#0f7269]"}`}
+                disabled={selectedPlan?.name === "Premium Subscription"}
+              >
+                <span>{selectedPlan?.name === "Premium Subscription" ? "Selected" : "Select Plan"}</span>
                 <ArrowRight size={16} />
               </button>
-            </div>
+              </div>
 
-            {/* Elite Subscription */}
-            <div className="bg-white rounded-lg p-4 shadow-sm flex-shrink-0 w-64 flex flex-col h-64">
+              {/* Elite Subscription */}
+              <div className="bg-white rounded-lg p-4 shadow-sm flex-shrink-0 w-64 flex flex-col h-64">
               <h3 className="text-base font-semibold text-[#101010] mb-2">
                 Elite Subscription
               </h3>
@@ -235,11 +271,15 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
                 <li>• 24/7 roadside assistance</li>
                 <li>• Complimentary ceramic coating</li>
               </ul>
-              <button className="w-full bg-[#128C7E] text-white py-2.5 rounded-full text-sm font-medium hover:bg-[#0f7269] transition-colors flex items-center justify-center gap-2">
-                <span>Select Plan</span>
+              <button 
+                onClick={() => handleSelectPlan("Elite Subscription", 1299)}
+                className={`w-full py-2.5 rounded-full text-sm font-medium transition-colors flex items-center justify-center gap-2 ${selectedPlan?.name === "Elite Subscription" ? "bg-gray-400 text-white cursor-not-allowed" : "bg-[#128C7E] text-white hover:bg-[#0f7269]"}`}
+                disabled={selectedPlan?.name === "Elite Subscription"}
+              >
+                <span>{selectedPlan?.name === "Elite Subscription" ? "Selected" : "Select Plan"}</span>
                 <ArrowRight size={16} />
               </button>
-            </div>
+              </div>
             </div>
           </div>
         </div>
@@ -282,7 +322,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ onBack }) => {
             onClick={handlePayClick}
             className="bg-[#128C7E] text-white px-8 py-3 rounded-full text-base font-medium hover:bg-[#0f7269] transition-colors flex items-center gap-2"
           >
-            Pay ₹ 489
+            Pay ₹ {totalAmount}
             <ArrowRight size={18} />
           </button>
         </div>
