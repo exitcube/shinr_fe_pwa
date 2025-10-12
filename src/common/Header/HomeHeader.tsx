@@ -6,26 +6,23 @@ export const HomeHeader: React.FC = () => {
     <div className="flex items-center justify-between w-full p-2 bg-gray-50 border-b border-gray-200 font-poppins">
       <div className="flex items-center">
         <Image
-            src="/assets/logo/sr_logo.png"
-            alt="icon"
-            width={26}
-            height={26}
-            className="mr-1"
-          />
+          src="/assets/logo/sr_logo.png"
+          alt="icon"
+          width={26}
+          height={26}
+          className="mr-1"
+        />
       </div>
       <div className="flex items-center">
         {/* Location Display */}
         <div className="flex items-center bg-white rounded-full px-2 py-2 shadow-sm border border-gray-200 max-w-[150px] sm:max-w-xs md:max-w-md overflow-hidden">
           <Image
-            src="/assets/icons/location.svg"
+            src="/assets/icons/cart.svg"
             alt="icon"
-            width={12}
-            height={12}
+            width={24}
+            height={24}
             className="mr-1"
           />
-          <span className="text-sm text-gray-700 whitespace-nowrap overflow-hidden text-ellipsis">
-            1/342, BTM 2<sup>nd</sup> Stag...
-          </span>
         </div>
 
         {/* Notification Bell */}
