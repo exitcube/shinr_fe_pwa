@@ -6,11 +6,17 @@ import { ServiceSection } from "@/components/homeArea/ServiceSection";
 import { ShineSection } from "@/components/homeArea/ShineSection";
 import { VendorsSection } from "@/components/homeArea/VendorsSection";
 import { FadeInSection } from "@/utils/FadeInSection";
+import LocationCard from "@/components/Location/LocationCard";
 import React from "react";
 
 const HomePageContent = () => {
   return (
     <div className=" bg-[#F5F5F5] no-scrollbar pb-16 pt-5">
+      {/* Location Card */}
+      <FadeInSection>
+        <LocationCard />
+      </FadeInSection>
+
       {/* Main Banner */}
       <FadeInSection>
         <MainBanner />

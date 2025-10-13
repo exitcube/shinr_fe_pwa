@@ -10,6 +10,7 @@ export const HeaderWrapper = () => {
 
   const isSplash = pathname.startsWith("/splash");
   if (isSplash) return null;
+  const isService = pathname === "/service-booking";
 
-  return isLoginOrRoot ? <Header /> : <HomeHeader />;
+  return isLoginOrRoot ? <Header /> : isService ? <></> : <HomeHeader />;
 };
