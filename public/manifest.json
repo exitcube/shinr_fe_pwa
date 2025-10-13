@@ -21,7 +21,17 @@
   "orientation": "portrait",
   "screenshots": [
     {
-      "src": "/screenshots/home.png",
+      "src": "/assets/screenshots/splash.png",
+      "sizes": "540x720",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/screenshots/login.png",
+      "sizes": "540x720",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/screenshots/home.png",
       "sizes": "540x720",
       "type": "image/png"
     }
