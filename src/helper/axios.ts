@@ -1,3 +1,4 @@
+import { store } from "@/redux/store";
 import axios from "axios";
 
 const API = axios.create({
@@ -8,17 +9,26 @@ const API = axios.create({
   },
 });
 
-// Add request interceptor (e.g., add auth token)
-// API.interceptors.request.use(
-//     (config) => {
-//         const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
-//         if (token) {
-//             config.headers.Authorization = `Bearer ${token}`;
-//         }
-//         return config;
-//     },
-//     (error) => Promise.reject(error)
-// );
+// Add request interceptor
+API.interceptors.request.use(
+  (config) => {
+    const state = store.getState(); // ✅ get state directly
+    const deviceUUId = state.auth.deviceUUId;
+
+    if (deviceUUId) {
+      config.headers["x-device-id"] = deviceUUId;
+    }
+
+    // const token =
+    //   typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    // if (token) {
+    //   config.headers.Authorization = `Bearer ${token}`;
+    // }
+
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 // Add response interceptor (e.g., handle errors globally)
 API.interceptors.response.use(

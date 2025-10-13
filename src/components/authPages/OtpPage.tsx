@@ -12,8 +12,6 @@ export const OtpPage: React.FC<IProps> = ({
   handleVerifyOtp,
   verifyLoading,
 }) => {
-  // const router = useRouter();
-
   const {
     handleSubmit,
     control,
