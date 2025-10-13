@@ -8,13 +8,13 @@ interface StorageLike {
 
 const createNoopStorage = (): StorageLike => {
   return {
-    getItem(_key: string) {
+    getItem() {
       return Promise.resolve(null);
     },
     setItem(_key: string, value: string) {
       return Promise.resolve(value);
     },
-    removeItem(_key: string) {
+    removeItem() {
       return Promise.resolve();
     },
   };

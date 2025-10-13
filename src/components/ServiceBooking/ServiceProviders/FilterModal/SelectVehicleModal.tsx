@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { X, ArrowRight, Check } from "lucide-react";
 import Image from "next/image";
 
@@ -16,24 +16,31 @@ interface SelectVehicleModalProps {
   onSave: (vehicle: Vehicle) => void;
 }
 
-const SelectVehicleModal: React.FC<SelectVehicleModalProps> = ({ isOpen, onClose, onSave }) => {
+const SelectVehicleModal: React.FC<SelectVehicleModalProps> = ({
+  isOpen,
+  onClose,
+  onSave,
+}) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
 
-  const vehicles: Vehicle[] = [
-    {
-      id: 1,
-      type: "Car",
-      name: "Toyota Glanza",
-      imageUrl: "/assets/images/car_image.png",
-    },
-    {
-      id: 2,
-      type: "Bike",
-      name: "Royal Enfield Himalayan",
-      imageUrl: "/assets/images/car_image.png",
-    },
-  ];
+  const vehicles: Vehicle[] = useMemo(
+    () => [
+      {
+        id: 1,
+        type: "Car",
+        name: "Toyota Glanza",
+        imageUrl: "/assets/images/car_image.png",
+      },
+      {
+        id: 2,
+        type: "Bike",
+        name: "Royal Enfield Himalayan",
+        imageUrl: "/assets/images/car_image.png",
+      },
+    ],
+    []
+  );
 
   useEffect(() => {
     if (isOpen) {
@@ -41,7 +48,7 @@ const SelectVehicleModal: React.FC<SelectVehicleModalProps> = ({ isOpen, onClose
       // Set default selected vehicle
       setSelectedVehicle(vehicles[0]);
     }
-  }, [isOpen]);
+  }, [isOpen, vehicles]);
 
   const handleClose = () => {
     setIsAnimating(false);
@@ -78,7 +85,9 @@ const SelectVehicleModal: React.FC<SelectVehicleModalProps> = ({ isOpen, onClose
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-[#101010]">Select Vehicle</h2>
+          <h2 className="text-lg font-semibold text-[#101010]">
+            Select Vehicle
+          </h2>
           <button
             onClick={handleClose}
             className="p-1 hover:bg-gray-100 rounded-full transition-colors"
@@ -88,7 +97,10 @@ const SelectVehicleModal: React.FC<SelectVehicleModalProps> = ({ isOpen, onClose
         </div>
 
         {/* Content */}
-        <div className="overflow-y-auto px-6 py-4" style={{ maxHeight: "calc(60vh - 140px)" }}>
+        <div
+          className="overflow-y-auto px-6 py-4"
+          style={{ maxHeight: "calc(60vh - 140px)" }}
+        >
           <div className="space-y-3">
             {vehicles.map((vehicle) => (
               <button
@@ -113,7 +125,9 @@ const SelectVehicleModal: React.FC<SelectVehicleModalProps> = ({ isOpen, onClose
                 {/* Vehicle Info */}
                 <div className="flex-1 text-left">
                   <p className="text-xs text-gray-500 mb-1">{vehicle.type}</p>
-                  <p className="text-sm font-semibold text-[#101010]">{vehicle.name}</p>
+                  <p className="text-sm font-semibold text-[#101010]">
+                    {vehicle.name}
+                  </p>
                 </div>
 
                 {/* Check Icon */}

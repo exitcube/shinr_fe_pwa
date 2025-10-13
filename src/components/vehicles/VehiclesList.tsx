@@ -17,7 +17,7 @@ interface Vehicle {
 
 const VehiclesList: React.FC = () => {
   const [showAddVehicle, setShowAddVehicle] = useState(false);
-  const [vehicles, setVehicles] = useState<Vehicle[]>([
+  const vehicles: Vehicle[] = [
     {
       id: 1,
       name: "Bumble Bee",
@@ -38,7 +38,7 @@ const VehiclesList: React.FC = () => {
       imageUrl: "/assets/images/car_image.png",
       lastWash: "2 weeks ago",
     },
-  ]);
+  ];
 
   const handleAddVehicle = () => {
     setShowAddVehicle(true);
@@ -55,17 +55,12 @@ const VehiclesList: React.FC = () => {
   return (
     <div className="max-w-md mx-auto bg-[#F5F5F5] min-h-screen p-4 font-poppins">
       {/* Header */}
-      <h1 className="text-xl font-bold text-[#101010] mb-4">
-        Your Vehicles
-      </h1>
+      <h1 className="text-xl font-bold text-[#101010] mb-4">Your Vehicles</h1>
 
       {/* Vehicles List */}
       <div className="space-y-4">
         {vehicles.map((vehicle) => (
-          <div
-            key={vehicle.id}
-            className="bg-white rounded-2xl p-4 shadow-sm"
-          >
+          <div key={vehicle.id} className="bg-white rounded-2xl p-4 shadow-sm">
             {/* Vehicle Content */}
             <div className="flex gap-4 mb-4">
               {/* Vehicle Image */}
@@ -91,7 +86,7 @@ const VehiclesList: React.FC = () => {
                   </button>
                 </div>
                 <p className="text-sm text-gray-500 mb-3">{vehicle.year}</p>
-                
+
                 {/* Model Details */}
                 <div className="space-y-1">
                   <p className="text-xs text-gray-500">Model</p>
