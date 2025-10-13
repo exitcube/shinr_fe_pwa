@@ -20,7 +20,6 @@ interface ServiceAddonsModalProps {
 const ServiceAddonsModal: React.FC<ServiceAddonsModalProps> = ({
   isOpen,
   onClose,
-  serviceName,
   onCheckout,
 }) => {
   const [addons, setAddons] = useState<Addon[]>([
@@ -99,7 +98,10 @@ const ServiceAddonsModal: React.FC<ServiceAddonsModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="overflow-y-auto px-6 py-4" style={{ maxHeight: "calc(85vh - 180px)" }}>
+        <div
+          className="overflow-y-auto px-6 py-4"
+          style={{ maxHeight: "calc(85vh - 180px)" }}
+        >
           <h3 className="text-base font-semibold text-[#101010] mb-4">
             Add-ons
           </h3>
@@ -157,7 +159,7 @@ const ServiceAddonsModal: React.FC<ServiceAddonsModalProps> = ({
               ₹ {totalAmount}
             </span>
           </div>
-          <button 
+          <button
             onClick={handleScheduleClick}
             className="w-full bg-[#128C7E] text-white py-3 rounded-full font-medium text-sm hover:bg-[#0f7269] transition-colors flex items-center justify-center gap-2"
           >

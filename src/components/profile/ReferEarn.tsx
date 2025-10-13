@@ -44,9 +44,11 @@ const ReferEarn: React.FC<ReferEarnProps> = ({ onClose }) => {
       />
 
       {/* Modal */}
-      <div className={`fixed inset-x-0 bottom-0 z-[60] bg-white rounded-t-3xl shadow-2xl font-poppins max-w-md mx-auto transition-transform duration-300 ease-out ${
+      <div
+        className={`fixed inset-x-0 bottom-0 z-[60] bg-white rounded-t-3xl shadow-2xl font-poppins max-w-md mx-auto transition-transform duration-300 ease-out ${
           isAnimating ? "translate-y-0" : "translate-y-full"
-        }`}>
+        }`}
+      >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-[#101010]">Refer & Earn</h2>
@@ -79,13 +81,16 @@ const ReferEarn: React.FC<ReferEarnProps> = ({ onClose }) => {
               </button>
             </div>
             {copied && (
-              <p className="text-xs text-green-600 mt-1">Copied to clipboard!</p>
+              <p className="text-xs text-green-600 mt-1">
+                Copied to clipboard!
+              </p>
             )}
           </div>
 
           {/* Description */}
           <p className="text-sm text-gray-600 mb-6">
-            Your friend gets ₹50 off their first wash, and you earn ₹50 WB Cash once it's complete.
+            Your friend gets ₹50 off their first wash, and you earn ₹50 WB Cash
+            once its complete.
           </p>
 
           {/* Share Invite Button */}

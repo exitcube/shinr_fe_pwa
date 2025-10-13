@@ -4,6 +4,7 @@ import "./globals.css";
 import { FooterWrapper } from "@/common/Footer/FooterWrapper";
 import QueryProvider from "@/provider/QueryProvider";
 import { HeaderWrapper } from "@/common/Header/HeaderWrapper";
+import { StoreProvider } from "@/provider/StoreProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,11 +38,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
         <QueryProvider>
-          <div className="min-h-screen w-full flex flex-col">
-            <HeaderWrapper />
-            <main className="flex-1">{children}</main>
-            <FooterWrapper />
-          </div>
+          <StoreProvider>
+            <div className="min-h-screen w-full flex flex-col">
+              <HeaderWrapper />
+              <main className="flex-1">{children}</main>
+              <FooterWrapper />
+            </div>
+          </StoreProvider>
         </QueryProvider>
       </body>
     </html>

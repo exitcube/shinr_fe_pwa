@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#128C7E",
-  "description": "A PWA built with Next.js App Router",
+  "description": "One-stop car care platform. Book car washes, mechanics, tyre shops, detailing & ceramic coating services near you. Easy booking, trusted vendors.",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",

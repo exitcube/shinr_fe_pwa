@@ -1,20 +1,21 @@
 "use client";
 import React from "react";
-import { ArrowLeft } from "lucide-react";
 import ServiceProviders from "./ServiceProviders/ServiceProviders";
-import ServiceProvidersHeader from "./ServiceProviders/ServiceProvidersHeader";
 
 interface ServiceContentProps {
   serviceType: string;
   onBack: () => void;
 }
 
-const serviceContentData: Record<string, {
-  title: string;
-  description: string;
-  features: string[];
-  imageUrl: string;
-}> = {
+const serviceContentData: Record<
+  string,
+  {
+    title: string;
+    description: string;
+    features: string[];
+    imageUrl: string;
+  }
+> = {
   "Basic Wash": {
     title: "Basic Wash Service",
     description: "Complete exterior wash for your vehicle",
@@ -22,20 +23,20 @@ const serviceContentData: Record<string, {
       "Exterior body wash",
       "Wheel cleaning",
       "Window cleaning",
-      "Drying and polishing"
+      "Drying and polishing",
     ],
-    imageUrl: "/assets/images/basic_wash.svg"
+    imageUrl: "/assets/images/basic_wash.svg",
   },
-  "Mechanic": {
+  Mechanic: {
     title: "Mechanic Service",
     description: "Professional mechanical repairs and maintenance",
     features: [
       "Engine diagnostics",
       "Oil change",
       "Brake service",
-      "General repairs"
+      "General repairs",
     ],
-    imageUrl: "/assets/images/mechanic.svg"
+    imageUrl: "/assets/images/mechanic.svg",
   },
   "Interior Sanitization": {
     title: "Interior Sanitization",
@@ -44,9 +45,9 @@ const serviceContentData: Record<string, {
       "Vacuum cleaning",
       "Seat shampooing",
       "Dashboard cleaning",
-      "Air freshening"
+      "Air freshening",
     ],
-    imageUrl: "/assets/images/interior_sanitization.svg"
+    imageUrl: "/assets/images/interior_sanitization.svg",
   },
   "Puncture / Tyre Service": {
     title: "Puncture / Tyre Service",
@@ -55,9 +56,9 @@ const serviceContentData: Record<string, {
       "Puncture repair",
       "Tyre replacement",
       "Wheel balancing",
-      "Tyre pressure check"
+      "Tyre pressure check",
     ],
-    imageUrl: "/assets/images/tyre_service.svg"
+    imageUrl: "/assets/images/tyre_service.svg",
   },
   "Ceramic Coating": {
     title: "Ceramic Coating",
@@ -66,9 +67,9 @@ const serviceContentData: Record<string, {
       "9H hardness coating",
       "UV protection",
       "Hydrophobic layer",
-      "Long-lasting shine"
+      "Long-lasting shine",
     ],
-    imageUrl: "/assets/images/ceramic_coating.svg"
+    imageUrl: "/assets/images/ceramic_coating.svg",
   },
   "24/7 Assistance": {
     title: "24/7 Assistance",
@@ -77,15 +78,18 @@ const serviceContentData: Record<string, {
       "Emergency towing",
       "Battery jump-start",
       "Fuel delivery",
-      "Lockout service"
+      "Lockout service",
     ],
-    imageUrl: "/assets/images/assistance.svg"
-  }
+    imageUrl: "/assets/images/assistance.svg",
+  },
 };
 
-const ServiceContent: React.FC<ServiceContentProps> = ({ serviceType, onBack }) => {
+const ServiceContent: React.FC<ServiceContentProps> = ({
+  serviceType,
+  onBack,
+}) => {
   const content = serviceContentData[serviceType];
-
+  console.log("🚀 ~ ServiceContent ~ content:", content);
 
   return (
     <div className="fixed inset-0 bg-white z-50 flex flex-col font-poppins">
