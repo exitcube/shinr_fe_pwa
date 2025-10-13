@@ -1,21 +1,23 @@
 {
   "name": "ShinR",
   "short_name": "ShinR App",
-  "start_url": "/",
+  "start_url": "/splash",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#128C7E",
   "description": "A PWA built with Next.js App Router",
   "icons": [
     {
-      "src": "/icons/icon-192x192.png",
+      "src": "/assets/icons/sr-logo.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
-      "src": "/icons/icon-512x512.png",
+      "src": "/assets/icons/sr-logo.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "orientation": "portrait",
