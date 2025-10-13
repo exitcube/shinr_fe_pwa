@@ -37,10 +37,12 @@ const serviceCategories = [
 ];
 interface ServiceSectionProps {
   showHeading?: boolean;
+  onServiceClick?: (serviceTitle: string) => void;
 }
 
 export const ServiceSection: React.FC<ServiceSectionProps> = ({
   showHeading = true,
+  onServiceClick,
 }) => {
   return (
     <>
@@ -59,7 +61,8 @@ export const ServiceSection: React.FC<ServiceSectionProps> = ({
           {serviceCategories.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg flex flex-col justify-between border border-[#EDEDED]"
+              onClick={() => onServiceClick?.(service.title)}
+              className="bg-white rounded-xl shadow-lg flex flex-col justify-between border border-[#EDEDED] cursor-pointer hover:shadow-xl transition-shadow"
             >
               <h3 className="w-full text-left text-sm font-normal text-gray-800 p-2">
                 {service.title}

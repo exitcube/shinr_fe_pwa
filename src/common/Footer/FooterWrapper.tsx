@@ -9,6 +9,7 @@ export const FooterWrapper = () => {
 
   const isSplash = pathname.startsWith("/splash");
   if (isSplash) return null;
+  const isService = pathname === "/service-booking";
 
-  return isLoginOrRoot ? <></> : <Footer />;
+  return isLoginOrRoot || isService ? <></> : <Footer />;
 };
