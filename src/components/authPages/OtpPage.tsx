@@ -5,8 +5,13 @@ import { ArrowRight } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { OtpFormData, otpSchema } from "@/app/validation/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ClipLoader } from "react-spinners";
 
-export const OtpPage: React.FC<IProps> = ({ mobile }) => {
+export const OtpPage: React.FC<IProps> = ({
+  mobile,
+  handleVerifyOtp,
+  verifyLoading,
+}) => {
   // const router = useRouter();
 
   const {
@@ -20,7 +25,7 @@ export const OtpPage: React.FC<IProps> = ({ mobile }) => {
 
   const onSubmit = (data: OtpFormData) => {
     console.log("OTP submitted:", data);
-    // router.push("/home");
+    handleVerifyOtp(data.otp);
   };
 
   return (
@@ -127,7 +132,11 @@ export const OtpPage: React.FC<IProps> = ({ mobile }) => {
                 >
                   <div className="px-4 flex items-center justify-between w-full">
                     <span>Verify</span>
-                    <ArrowRight size={24} />
+                    {verifyLoading ? (
+                      <ClipLoader color="#ffffff" size={20} />
+                    ) : (
+                      <ArrowRight size={24} />
+                    )}
                   </div>
                 </button>
               </div>
@@ -142,4 +151,6 @@ export const OtpPage: React.FC<IProps> = ({ mobile }) => {
 
 interface IProps {
   mobile: string;
+  handleVerifyOtp: (otp: string) => void;
+  verifyLoading: boolean;
 }
