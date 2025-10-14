@@ -1,7 +1,7 @@
 {
   "name": "ShinR",
   "short_name": "ShinR App",
-  "start_url": "/splash",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#128C7E",

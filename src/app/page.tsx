@@ -1,9 +1,9 @@
-import { LandingPageContent } from "@/components/LandingPageContent";
+import { LandingPage } from "@/pageComponents/landingPage";
 
 export default function Home() {
   return (
     <>
-      <LandingPageContent />
+      <LandingPage />
     </>
   );
 }
