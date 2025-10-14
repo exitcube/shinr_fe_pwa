@@ -23,8 +23,21 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "ShinR",
-  description: "Your Vehicle Deserves Better ",
+  title: "ShinR App",
+  description:
+    "One-stop car care platform. Book car washes, mechanics, tyre shops, detailing & ceramic coating services near you. Easy booking, trusted vendors.",
+
+  manifest: "/manifest.json",
+  viewport: "width=device-width, initial-scale=1",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "ShinR App",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
