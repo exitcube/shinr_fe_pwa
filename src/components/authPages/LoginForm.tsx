@@ -35,7 +35,7 @@ const LoginForm: React.FC<IProps> = ({
 
   return (
     <div
-      className="flex items-center max-h-screen h-full px-4"
+      className="flex items-center h-full w-full sm:max-w-sm md:max-w-md"
       style={{ background: "#F5F5F5" }}
     >
       <AnimatePresence mode="wait">
@@ -64,7 +64,7 @@ const LoginForm: React.FC<IProps> = ({
 
             {/* Mobile Number Input Field */}
             <div className="w-full mb-auto">
-              <div className="flex items-center justify-center bg-white rounded-full px-4 py-3 border border-gray-200 w-full overflow-hidden">
+              <div className="flex items-center justify-center bg-white rounded-full px-4 py-3 border border-gray-200 w-full overflow-hidden min-w-0">
                 {/* Checkbox Icon (simplified SVG for visual representation) */}
                 <div className="mr-2">
                   <Image
@@ -86,7 +86,7 @@ const LoginForm: React.FC<IProps> = ({
                   maxLength={13} // includes spaces
                 />
                 {/* Green Icon */}
-                <div className="w-6 h-6ml-3">
+                <div className="w-6 h-6 ml-3">
                   <Image
                     src="/assets/icons/greenTick.svg"
                     alt="icon"
