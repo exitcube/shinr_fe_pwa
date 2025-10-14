@@ -2,7 +2,8 @@ import { z } from "zod";
 
 export const loginSchema = z.object({
   mobile: z
-    .string()
+    .string({ error: "Please enter a valid mobile number" })
+    .min(1, "Mobile number is required")
     .regex(/^[0-9]{10}$/, "Enter a valid 10-digit mobile number"),
 });
 

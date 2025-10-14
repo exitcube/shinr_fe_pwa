@@ -8,13 +8,13 @@
   "description": "One-stop car care platform. Book car washes, mechanics, tyre shops, detailing & ceramic coating services near you. Easy booking, trusted vendors.",
   "icons": [
     {
-      "src": "/assets/icons/sr-logo.png",
+      "src": "/assets/icons/sr-logo-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/assets/icons/sr-logo.png",
+      "src": "/assets/icons/sr-logo-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -36,6 +36,12 @@
       "src": "/assets/screenshots/home.png",
       "sizes": "540x720",
       "type": "image/png"
+    },
+    {
+      "src": "/assets/screenshots/home.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ]
 }
