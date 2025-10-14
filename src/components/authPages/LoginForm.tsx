@@ -49,7 +49,7 @@ const LoginForm: React.FC<IProps> = ({
           {/* App Content Area */}
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="relative flex flex-col items-center justify-between h-full font-poppins w-full max-w-sm mx-auto px-4"
+            className="relative flex flex-col items-center justify-between h-full font-poppins w-full"
           >
             {/* Main Text Content */}
             <div className="text-left w-full mb-8">
@@ -66,13 +66,12 @@ const LoginForm: React.FC<IProps> = ({
             <div className="w-full mb-auto">
               <div className="flex items-center justify-center bg-white rounded-full px-4 py-3 border border-gray-200 w-full overflow-hidden">
                 {/* Checkbox Icon (simplified SVG for visual representation) */}
-                <div className="w-6 h-6 mr-3">
+                <div className="mr-2">
                   <Image
                     src="/assets/icons/phoneIcon.svg"
                     alt="icon"
                     width={24}
                     height={24}
-                    className="w-6 h-6"
                   />
                 </div>
                 {mobile && (
