@@ -3,7 +3,7 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
-import { OtpFormData, otpSchema } from "@/app/validation/auth";
+import { OtpFormData, otpSchema } from "@/validation/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ClipLoader } from "react-spinners";
 
@@ -72,7 +72,7 @@ export const OtpPage: React.FC<IProps> = ({
                       {[0, 1, 2, 3].map((index) => (
                         <input
                           key={index}
-                          type="text"
+                          type="tel"
                           maxLength={1}
                           {...field}
                           onChange={(e) => {
@@ -110,7 +110,7 @@ export const OtpPage: React.FC<IProps> = ({
                   )}
                 />
                 {errors.otp && (
-                  <p className="text-red-500 text-sm mb-4">
+                  <p className="text-red-500 text-sm mb-4 text-center">
                     {errors.otp.message}
                   </p>
                 )}

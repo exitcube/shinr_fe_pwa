@@ -1,4 +1,4 @@
-import { LoginFormData, loginSchema } from "@/app/validation/auth";
+import { LoginFormData, loginSchema } from "@/validation/auth";
 import { ILoginPayload } from "@/types/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
@@ -49,7 +49,7 @@ const LoginForm: React.FC<IProps> = ({
           {/* App Content Area */}
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="relative flex flex-col items-center justify-between h-full font-poppins"
+            className="relative flex flex-col items-center justify-between h-full font-poppins w-full max-w-sm mx-auto px-4"
           >
             {/* Main Text Content */}
             <div className="text-left w-full mb-8">
@@ -64,7 +64,7 @@ const LoginForm: React.FC<IProps> = ({
 
             {/* Mobile Number Input Field */}
             <div className="w-full mb-auto">
-              <div className="flex items-center justify-center bg-white rounded-full p-4 border border-gray-200">
+              <div className="flex items-center justify-center bg-white rounded-full px-4 py-3 border border-gray-200 w-full overflow-hidden">
                 {/* Checkbox Icon (simplified SVG for visual representation) */}
                 <div className="w-6 h-6 mr-3">
                   <Image
@@ -80,7 +80,7 @@ const LoginForm: React.FC<IProps> = ({
                 )}
                 <input
                   type="tel"
-                  placeholder="Your 10-digit mobile number"
+                  placeholder="Your mobile number"
                   value={mobile}
                   onChange={handlePhoneChange}
                   className="flex-grow bg-transparent outline-none text-lg text-gray-800 placeholder-gray-500"
@@ -108,7 +108,7 @@ const LoginForm: React.FC<IProps> = ({
             <button
               type="submit"
               disabled={isPending || isSubmitting}
-              className={`w-full mx-6 mb-6 py-4 bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform flex items-center justify-between `}
+              className={`w-full py-4 bg-[#128C7E] text-white rounded-full shadow-lg transition-all duration-300 transform flex items-center justify-between px-6 mb-6`}
             >
               <span className="mr-2">Get OTP</span>
               {isPending ? (

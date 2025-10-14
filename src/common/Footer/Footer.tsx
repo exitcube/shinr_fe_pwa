@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
             className="bg-[#128C7E] p-3 md:p-6 rounded-full shadow-lg flex items-center justify-center"
             onClick={() => router.push("/service-booking")}
           >
-            <HugeiconsIcon icon={CalendarAdd01Icon} />
+            <HugeiconsIcon icon={CalendarAdd01Icon} color="white" />
           </button>
         </div>
         <div className="w-full flex justify-between items-start z-10 px-4 pt-8 md:pt-16">
