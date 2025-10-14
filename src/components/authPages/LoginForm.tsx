@@ -64,27 +64,31 @@ const LoginForm: React.FC<IProps> = ({
 
             {/* Mobile Number Input Field */}
             <div className="w-full mb-auto">
-              <div className="flex items-center justify-center bg-white rounded-full px-4 py-3 border border-gray-200 w-full overflow-hidden min-w-0">
+              <div className="flex items-center justify-between px-4 bg-white rounded-full py-3 border border-gray-200 w-full overflow-hidden min-w-0">
                 {/* Checkbox Icon (simplified SVG for visual representation) */}
-                <div className="mr-2">
-                  <Image
-                    src="/assets/icons/phoneIcon.svg"
-                    alt="icon"
-                    width={24}
-                    height={24}
+                <div className="flex gap-2 items-center">
+                  <div className="mr-2">
+                    <Image
+                      src="/assets/icons/phoneIcon.svg"
+                      alt="icon"
+                      width={24}
+                      height={24}
+                    />
+                  </div>
+                  {mobile && (
+                    <span className="text-gray-800 text-lg mr-2 flex-shrink-0">
+                      +91
+                    </span>
+                  )}
+                  <input
+                    type="tel"
+                    placeholder="Your mobile number"
+                    value={mobile}
+                    onChange={handlePhoneChange}
+                    className="bg-transparent outline-none text-lg text-gray-800 placeholder-gray-500"
+                    maxLength={13} // includes spaces
                   />
                 </div>
-                {mobile && (
-                  <span className="text-gray-800 mr-2 flex-shrink-0">+91</span>
-                )}
-                <input
-                  type="tel"
-                  placeholder="Your mobile number"
-                  value={mobile}
-                  onChange={handlePhoneChange}
-                  className="flex-grow bg-transparent outline-none text-lg text-gray-800 placeholder-gray-500"
-                  maxLength={13} // includes spaces
-                />
                 {/* Green Icon */}
                 <div className="w-6 h-6 ml-3">
                   <Image
