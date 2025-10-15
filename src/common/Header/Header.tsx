@@ -9,12 +9,12 @@ export const Header: React.FC = () => {
     <div
       className={`flex items-center ${
         isLoginPath ? "justify-start" : "justify-center"
-      } gap-2 mt-8 w-full shrink-0 px-5`}
+      } gap-2 mt-5 w-full shrink-0 px-4`}
     >
       <Image
         src="/assets/icons/shinr-logo-black.png"
         alt="SHINR Logo"
-        className="h-7 w-20 rounded-full"
+        className="h-8 w-24 rounded-full"
         width={81}
         height={28}
       />

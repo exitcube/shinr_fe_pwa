@@ -1,16 +1,27 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { Header } from "./Header";
-import { HomeHeader } from "./HomeHeader";
+import { useEffect, useState } from "react";
+
+const SHOW_HEADER_PATH = ["/", "/login"];
 
 export const HeaderWrapper = () => {
   const pathname = usePathname();
+  const [hideHeader, setHideHeader] = useState(true);
 
-  const isLoginOrRoot = pathname === "/login" || pathname === "/";
+  const showHeader = SHOW_HEADER_PATH.includes(pathname);
 
-  const isSplash = pathname.startsWith("/splash");
-  if (isSplash) return null;
-  const isService = pathname === "/service-booking";
+  useEffect(() => {
+    if (pathname === "/") {
+      setHideHeader(true);
+      const timer = setTimeout(() => setHideHeader(false), 1500); // same as splash screen duration
+      return () => clearTimeout(timer);
+    } else {
+      setHideHeader(false);
+    }
+  }, [pathname]);
 
-  return isLoginOrRoot ? <Header /> : isService ? <></> : <HomeHeader />;
+  if (hideHeader) return null;
+
+  return <>{showHeader && <Header />}</>;
 };

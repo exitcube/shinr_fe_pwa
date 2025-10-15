@@ -8,7 +8,6 @@ interface JwtPayload {
 export const decodeToken = (token: string) => {
   try {
     const decoded = jwtDecode<JwtPayload>(token);
-    console.log(decoded);
     return decoded;
   } catch (error) {
     console.error("Invalid token:", error);

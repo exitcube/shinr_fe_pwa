@@ -1,3 +1,5 @@
+import UserHeaderWrapper from "@/common/Header/UserHeaderWrapper";
+
 export default function UserLayout({
   children,
 }: Readonly<{
@@ -5,6 +7,7 @@ export default function UserLayout({
 }>) {
   return (
     <>
+      <UserHeaderWrapper />
       <div>{children}</div>
     </>
   );
