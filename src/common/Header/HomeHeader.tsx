@@ -8,7 +8,7 @@ export const HomeHeader: React.FC = () => {
         <Image
           src="/assets/icons/shinr-logo-black.png"
           alt="SHINR Logo"
-          className="h-7 w-20 rounded-full text-black"
+          className="h-8 w-24 rounded-full text-black"
           width={81}
           height={28}
         />

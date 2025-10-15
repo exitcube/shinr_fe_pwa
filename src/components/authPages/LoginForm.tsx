@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
 
@@ -13,14 +13,26 @@ const LoginForm: React.FC<IProps> = ({
   isPending,
   mobile,
   setMobile,
+  mobileError,
 }) => {
   const {
     handleSubmit,
     setValue,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
+
+  useEffect(() => {
+    if (mobileError) {
+      setError("mobile", { type: "server", message: mobileError });
+    }
+  }, [mobileError]);
+
+  useEffect(() => {
+    setValue("mobile", mobile.replace(/\s/g, ""));
+  }, [mobile]);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhone(e.target.value);
@@ -157,6 +169,7 @@ interface IProps {
   isPending: boolean;
   mobile: string;
   setMobile: React.Dispatch<React.SetStateAction<string>>;
+  mobileError: string;
 }
 
 // ✅ Format function (adds spaces like 988 776 5544)

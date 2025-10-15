@@ -12,7 +12,9 @@ import { useRouter } from "next/navigation";
 export const Login: React.FC = () => {
   const [showOtp, setShowOtp] = useState(false);
   const [mobile, setMobile] = React.useState("");
+  const [mobileError, setMobileError] = useState("");
   const [otpToken, setOtpToken] = useState("");
+  const [otpError, setOtpError] = useState("");
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -25,14 +27,13 @@ export const Login: React.FC = () => {
       onSuccess: (response) => {
         const decoded = decodeToken(response.data.otpToken);
         dispatch(setDeviceUUId(decoded?.deviceUUId));
-        console.log("🚀 ~ handleLogin ~ decoded:", decoded);
         setOtpToken(response.data.otpToken);
         setShowOtp(true);
       },
       onError: (error) => {
-        console.log("🚀 ~ handleLogin ~ error:", error);
         setOtpToken("");
         setShowOtp(false);
+        setMobileError(error.message);
       },
     });
   };
@@ -40,16 +41,14 @@ export const Login: React.FC = () => {
   const handleVerifyOtp = (otp: string) => {
     if (!otpToken) return;
     const payload = { otp, otpToken };
-    console.log("🚀 ~ handleVerifyOtp ~ payload:", payload);
     verifyOtp(payload, {
       onSuccess: (data) => {
         console.log(data, "OTP verified successfully");
+        setOtpError("");
         router.push("/home");
-        // Redirect or perform further actions upon successful verification
       },
-      onError: (error) => {
-        console.log("OTP verification failed:", error);
-        // Handle error, show message to user, etc.
+      onError: (error: any) => {
+        setOtpError(error.message);
       },
     });
   };
@@ -63,12 +62,15 @@ export const Login: React.FC = () => {
           isPending={otpReqLoading}
           mobile={mobile}
           setMobile={setMobile}
+          mobileError={mobileError}
         />
       ) : (
         <OtpPage
           mobile={mobile}
           handleVerifyOtp={handleVerifyOtp}
           verifyLoading={verifyLoading}
+          setShowOtp={setShowOtp}
+          otpError={otpError}
         />
       )}
     </>

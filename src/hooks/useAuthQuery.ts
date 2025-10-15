@@ -17,3 +17,10 @@ export const useVerifyOtpMutation = () => {
     mutationFn: (payload) => authService.verifyOtp(payload),
   });
 };
+
+export const useResendOtpMutation = () => {
+  return useMutation<void, Error, { otpToken: string }>({
+    mutationKey: ["resendOtp"],
+    mutationFn: (payload) => authService.resendOtp(payload),
+  });
+};

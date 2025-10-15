@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
@@ -11,10 +11,13 @@ export const OtpPage: React.FC<IProps> = ({
   mobile,
   handleVerifyOtp,
   verifyLoading,
+  setShowOtp,
+  otpError,
 }) => {
   const {
     handleSubmit,
     control,
+    setError,
     formState: { errors },
   } = useForm<OtpFormData>({
     resolver: zodResolver(otpSchema),
@@ -26,8 +29,14 @@ export const OtpPage: React.FC<IProps> = ({
     handleVerifyOtp(data.otp);
   };
 
+  useEffect(() => {
+    if (otpError) {
+      setError("otp", { type: "server", message: otpError });
+    }
+  }, [otpError]);
+
   return (
-    <div className="flex items-center max-h-screen h-full max-w-lg">
+    <div className="flex items-center h-full w-full sm:max-w-sm md:max-w-md">
       <AnimatePresence mode="wait">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
@@ -37,7 +46,7 @@ export const OtpPage: React.FC<IProps> = ({
           className="w-full h-full"
         >
           {/* Top content section */}
-          <div className="font-poppins flex flex-col h-full pb-6">
+          <div className="font-poppins flex flex-col h-full">
             <div className="flex flex-col gap-3 mb-8">
               <h1 className="text-xl font-medium text-[#101010]">
                 OTP Code Verification
@@ -48,7 +57,10 @@ export const OtpPage: React.FC<IProps> = ({
                   <span className="text-[14px] font-semibold text-[#101010]">
                     {mobile}
                   </span>
-                  <button className="text-primary font-semibold underline">
+                  <button
+                    className="text-primary font-semibold underline"
+                    onClick={() => setShowOtp(false)}
+                  >
                     Edit
                   </button>
                 </span>
@@ -68,7 +80,7 @@ export const OtpPage: React.FC<IProps> = ({
                   name="otp"
                   control={control}
                   render={({ field }) => (
-                    <div className="flex justify-between gap-4 mb-4">
+                    <div className="flex justify-between gap-3 mb-4">
                       {[0, 1, 2, 3].map((index) => (
                         <input
                           key={index}
@@ -103,7 +115,7 @@ export const OtpPage: React.FC<IProps> = ({
                             }
                           }}
                           value={field.value[index] || ""}
-                          className="w-[75.5px] h-[56px] text-center opacity-100 rounded-[48px] border p-[20px] bg-white focus:border-[#128C7E] text-gray-800 focus:outline-none"
+                          className="w-[75.5px] h-[56px] text-center opacity-100 rounded-[48px] border border-[#D6D6D6] p-5 bg-white focus:border-[#128C7E] text-gray-800 focus:outline-none"
                         />
                       ))}
                     </div>
@@ -126,7 +138,7 @@ export const OtpPage: React.FC<IProps> = ({
                 {/* Bottom Button */}
                 <button
                   type="submit"
-                  className="w-full bg-[#128C7E] text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-102 flex items-start"
+                  className="w-full py-4 bg-[#128C7E] text-white rounded-full shadow-lg transition-all duration-300 transform flex items-center justify-between px-4 mb-6"
                 >
                   <div className="px-4 flex items-center justify-between w-full">
                     <span>Verify</span>
@@ -151,4 +163,6 @@ interface IProps {
   mobile: string;
   handleVerifyOtp: (otp: string) => void;
   verifyLoading: boolean;
+  setShowOtp: React.Dispatch<React.SetStateAction<boolean>>;
+  otpError: string;
 }
