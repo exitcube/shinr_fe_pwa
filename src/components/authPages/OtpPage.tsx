@@ -33,7 +33,7 @@ export const OtpPage: React.FC<IProps> = ({
     if (otpError) {
       setError("otp", { type: "server", message: otpError });
     }
-  }, [otpError]);
+  }, [otpError, setError]);
 
   return (
     <div className="flex items-center h-full w-full sm:max-w-sm md:max-w-md">

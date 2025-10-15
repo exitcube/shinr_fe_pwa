@@ -28,11 +28,11 @@ const LoginForm: React.FC<IProps> = ({
     if (mobileError) {
       setError("mobile", { type: "server", message: mobileError });
     }
-  }, [mobileError]);
+  }, [mobileError, setError]);
 
   useEffect(() => {
     setValue("mobile", mobile.replace(/\s/g, ""));
-  }, [mobile]);
+  }, [mobile, setValue]);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhone(e.target.value);

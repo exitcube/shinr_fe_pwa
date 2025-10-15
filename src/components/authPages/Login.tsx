@@ -47,7 +47,7 @@ export const Login: React.FC = () => {
         setOtpError("");
         router.push("/home");
       },
-      onError: (error: any) => {
+      onError: (error) => {
         setOtpError(error.message);
       },
     });
