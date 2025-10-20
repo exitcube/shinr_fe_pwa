@@ -48,8 +48,8 @@ const vendors = [
 export const VendorsSection: React.FC = () => {
   return (
     <>
-      <div className="container mx-auto px-4 font-poppins">
-        <div className="flex justify-between items-center mb-4">
+      <div className="container mx-auto font-poppins">
+        <div className="flex justify-between items-center mb-4 px-4">
           <h3 className="text-lg font-semibold text-[#101010]">Vendors</h3>
           <a
             href="#"
@@ -73,7 +73,7 @@ export const VendorsSection: React.FC = () => {
           </a>
         </div>
         <div className=" pb-4  overflow-x-scroll no-scrollbar">
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 pl-4">
             {vendors.map((vendor) => (
               <div
                 key={vendor.id}

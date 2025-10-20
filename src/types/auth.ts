@@ -4,10 +4,14 @@ export interface ILoginPayload {
 
 export interface ILoginResponse {
   otpToken: string;
-  message: string;
 }
 
 export interface IVerifyOtpPayload {
   otp: string;
   otpToken: string;
+}
+
+export interface ITokenResponse {
+  accessToken: string;
+  refreshToken: string;
 }

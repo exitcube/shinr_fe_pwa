@@ -53,10 +53,10 @@ export const MainBanner: React.FC = () => {
 
   return (
     <div className="flex-grow">
-      <div className="ml-4 mt-4 mb-4 overflow-hidden">
+      <div className="mt-4 mb-4 overflow-hidden">
         <motion.div
           ref={carouselRef}
-          className="flex pb-4 space-x-4 cursor-grab active:cursor-grabbing"
+          className="flex pb-4 space-x-4 cursor-grab active:cursor-grabbing pl-4"
           drag="x"
           dragConstraints={{ left: -width, right: 0 }}
           transition={{ type: "spring", stiffness: 200, damping: 30 }}
