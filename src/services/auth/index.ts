@@ -28,4 +28,18 @@ export class AuthService {
       throw new Error(handleAxiosError(error, "resend otp failed"));
     }
   };
+
+  generateRefresToken = async (payload: { refreshToken: string }) => {
+    try {
+      const { data } = await API.post(
+        "/user/login/generate-refreshToken",
+        payload
+      );
+      return data;
+    } catch (error) {
+      throw new Error(
+        handleAxiosError(error, "Failed to generate refresh token")
+      );
+    }
+  };
 }
