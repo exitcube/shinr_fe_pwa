@@ -19,7 +19,7 @@ export const useVerifyOtpMutation = () => {
 };
 
 export const useResendOtpMutation = () => {
-  return useMutation<void, Error, { otpToken: string }>({
+  return useMutation<{ data: ILoginResponse }, Error, { otpToken: string }>({
     mutationKey: ["resendOtp"],
     mutationFn: (payload) => authService.resendOtp(payload),
   });

@@ -42,8 +42,7 @@ export const Login: React.FC = () => {
     if (!otpToken) return;
     const payload = { otp, otpToken };
     verifyOtp(payload, {
-      onSuccess: (data) => {
-        console.log(data, "OTP verified successfully");
+      onSuccess: () => {
         setOtpError("");
         router.push("/home");
       },
@@ -71,6 +70,8 @@ export const Login: React.FC = () => {
           verifyLoading={verifyLoading}
           setShowOtp={setShowOtp}
           otpError={otpError}
+          otpToken={otpToken}
+          setOtpToken={setOtpToken}
         />
       )}
     </>

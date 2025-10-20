@@ -4,7 +4,6 @@ export interface ILoginPayload {
 
 export interface ILoginResponse {
   otpToken: string;
-  message: string;
 }
 
 export interface IVerifyOtpPayload {

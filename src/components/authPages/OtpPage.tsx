@@ -1,11 +1,12 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { OtpFormData, otpSchema } from "@/validation/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ClipLoader } from "react-spinners";
+import { useResendOtpMutation } from "@/hooks/useAuthQuery";
 
 export const OtpPage: React.FC<IProps> = ({
   mobile,
@@ -13,7 +14,12 @@ export const OtpPage: React.FC<IProps> = ({
   verifyLoading,
   setShowOtp,
   otpError,
+  otpToken,
+  setOtpToken,
 }) => {
+  const [secondsLeft, setSecondsLeft] = useState(45);
+  const { mutate: resendOtp } = useResendOtpMutation();
+
   const {
     handleSubmit,
     control,
@@ -25,15 +31,36 @@ export const OtpPage: React.FC<IProps> = ({
   });
 
   const onSubmit = (data: OtpFormData) => {
-    console.log("OTP submitted:", data);
     handleVerifyOtp(data.otp);
   };
+
+  useEffect(() => {
+    if (secondsLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      setSecondsLeft((s) => Math.max(0, s - 1));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [secondsLeft]);
 
   useEffect(() => {
     if (otpError) {
       setError("otp", { type: "server", message: otpError });
     }
   }, [otpError, setError]);
+
+  const handleResendOtp = () => {
+    resendOtp(
+      { otpToken },
+      {
+        onSuccess: (response) => {
+          setOtpToken(response.data.otpToken);
+          setSecondsLeft(45); // <-- reset timer
+        },
+      }
+    );
+  };
 
   return (
     <div className="flex items-center h-full w-full sm:max-w-sm md:max-w-md">
@@ -130,9 +157,17 @@ export const OtpPage: React.FC<IProps> = ({
               <div className="mt-auto">
                 <div className="text-center text-[14px] text-[#101010] mb-4">
                   Didn’t receive code?&nbsp;
-                  <a href="#" className="text-[#128C7E] font-medium">
-                    Resend
-                  </a>
+                  {secondsLeft > 0 ? (
+                    <span>Resend in {secondsLeft}s</span>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={handleResendOtp}
+                      className="text-[#128C7E] font-medium z-10"
+                    >
+                      Resend
+                    </button>
+                  )}
                 </div>
 
                 {/* Bottom Button */}
@@ -165,4 +200,6 @@ interface IProps {
   verifyLoading: boolean;
   setShowOtp: React.Dispatch<React.SetStateAction<boolean>>;
   otpError: string;
+  otpToken: string;
+  setOtpToken: React.Dispatch<React.SetStateAction<string>>;
 }
