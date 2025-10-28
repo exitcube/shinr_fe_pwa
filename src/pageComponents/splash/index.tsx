@@ -21,6 +21,7 @@ const SplashScreen: React.FC = () => {
         alt="Logo"
         width={156}
         height={54}
+        className="h-auto w-auto"
       />
     </div>
   );

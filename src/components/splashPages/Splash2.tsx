@@ -10,7 +10,7 @@ export const Splash2: React.FC = () => {
           alt="Car Illustration"
           width={299}
           height={186}
-          className="sm:w-1/2 md:w-1/3 lg:w-1/3 z-10"
+          className="sm:w-1/2 md:w-1/3 lg:w-1/3 h-auto w-auto z-10"
         />
       </div>
 

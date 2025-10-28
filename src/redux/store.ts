@@ -12,14 +12,17 @@ import {
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import storage from "@/helper/storage";
 import authReducer from "./slices/authSlice";
+import deviceReducer from "./slices/deviceSlice";
 
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["auth"],
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  device: deviceReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

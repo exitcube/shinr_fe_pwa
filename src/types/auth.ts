@@ -12,6 +12,5 @@ export interface IVerifyOtpPayload {
 }
 
 export interface ITokenResponse {
-  accessToken: string;
-  refreshToken: string;
+  data: { refreshToken: string; accessToken: string };
 }
