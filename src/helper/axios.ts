@@ -13,7 +13,7 @@ const API = axios.create({
 API.interceptors.request.use(
   (config) => {
     const state = store.getState(); // ✅ get state directly
-    const deviceUUId = state.auth.deviceUUId;
+    const deviceUUId = state.device.deviceUUId;
 
     if (deviceUUId) {
       config.headers["x-device-id"] = deviceUUId;
