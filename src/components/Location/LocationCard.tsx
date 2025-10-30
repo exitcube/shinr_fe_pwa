@@ -1,9 +1,11 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
+import LocationModal from "./LocationModal";
 
 const LocationCard = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="mx-4 mb-4">
       <div className="bg-white rounded-2xl p-4 shadow-sm">
@@ -20,7 +22,10 @@ const LocationCard = () => {
         </div>
 
         {/* Address Row */}
-        <div className="flex items-center justify-between">
+        <div
+          className="flex items-center justify-between"
+          onClick={() => setIsOpen(true)}
+        >
           <p className="text-base text-[#101010] font-normal flex-1 pr-2 truncate">
             1/343 ipsum dolor sit amet, consectetur...
           </p>
@@ -29,6 +34,7 @@ const LocationCard = () => {
           </button>
         </div>
       </div>
+      <LocationModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
