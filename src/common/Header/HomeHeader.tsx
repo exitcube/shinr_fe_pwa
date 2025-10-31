@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export const HomeHeader: React.FC = () => {
   return (
     <div className="flex items-center justify-between w-full p-4 font-poppins">
-      <div className="flex items-center">
+      <Link href={"/home"} className="flex items-center">
         <Image
           src="/assets/icons/shinr-logo-black.png"
           alt="SHINR Logo"
@@ -12,7 +13,7 @@ export const HomeHeader: React.FC = () => {
           width={81}
           height={28}
         />
-      </div>
+      </Link>
       <div className="flex items-center">
         {/* Location Display */}
         <div className="flex items-center bg-white rounded-full px-2 py-2 shadow-sm border border-gray-200 max-w-[150px] sm:max-w-xs md:max-w-md overflow-hidden">

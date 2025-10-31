@@ -15,6 +15,7 @@ import { setAccessToken } from "@/redux/slices/authSlice";
 import { useAuth } from "@/redux/selectors/authSelector";
 import {
   useGenerateRefreshTokenMutation,
+  useLogoutMutation,
   useSetRefreshTokenMutation,
 } from "@/hooks/useAuthQuery";
 
@@ -41,17 +42,30 @@ export const AuthProvider = ({
 
   const { mutate: setRefreshCookie } = useSetRefreshTokenMutation();
 
+  const { mutate: userLogout } = useLogoutMutation();
+
   const [user, setUser] = useState<IUser | null>(null);
 
   const logout = useCallback(() => {
-    setRefreshCookie("", {
-      onSuccess: () => {
-        setUser(null);
-        dispatch(setAccessToken(null));
-        router.push("/login");
-      },
-    });
-  }, [router]);
+    if (accessToken) {
+      userLogout(undefined, {
+        onSuccess: () => {
+          setRefreshCookie("", {
+            onSuccess: () => {
+              setUser(null);
+              dispatch(setAccessToken(null));
+              router.push("/login");
+            },
+          });
+        },
+        onError: (error) => {
+          console.error("Logout failed:", error);
+        },
+      });
+    } else {
+      router.push("/login");
+    }
+  }, [userLogout, setRefreshCookie, dispatch, router, accessToken]);
 
   const initAuth = useCallback(() => {
     // refresh access token using refreshToken
@@ -84,7 +98,7 @@ export const AuthProvider = ({
 
   useEffect(() => {
     initAuth();
-  }, [initAuth]);
+  }, []);
 
   // Block UI while deciding auth OR if no access token yet
   if (!accessToken) return null;

@@ -42,3 +42,9 @@ export const useGenerateRefreshTokenMutation = () => {
     mutationFn: (payload) => authService.generateRefresToken(payload),
   });
 };
+
+export const useLogoutMutation = () => {
+  return useMutation({
+    mutationFn: () => authService.userLogout(),
+  });
+};
