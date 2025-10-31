@@ -1,17 +1,11 @@
 import React, { useState } from "react";
-import useMeasure from "react-use-measure";
-import {
-  useDragControls,
-  useMotionValue,
-  useAnimate,
-  motion,
-} from "framer-motion";
 import { PaymentTypes } from "./PaymentType";
+import { DragCloseDrawer } from "@/common/DragCloseDrawer";
 
-type WalletModelProps = {
+interface WalletModelProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
+}
 
 export const WalletModel: React.FC<WalletModelProps> = ({ open, setOpen }) => {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(2000);
@@ -28,8 +22,6 @@ export const WalletModel: React.FC<WalletModelProps> = ({ open, setOpen }) => {
     setCustomAmount(amount);
   };
 
-  console.log(openPayment, "open");
-
   return (
     <div className="relative">
       <DragCloseDrawer open={open} setOpen={setOpen}>
@@ -41,7 +33,9 @@ export const WalletModel: React.FC<WalletModelProps> = ({ open, setOpen }) => {
               <span className="font-normal text-[24px] ">
                 {Math.floor(customAmount / 1)}
               </span>
-              <span className="text-[#878787] font-normal text-[24px]">.00</span>
+              <span className="text-[#878787] font-normal text-[24px]">
+                .00
+              </span>
             </div>
             <div className="text-center text-[#878787] text-[12px] mb-6">
               Enter amount to be added to Shinr
@@ -91,84 +85,5 @@ export const WalletModel: React.FC<WalletModelProps> = ({ open, setOpen }) => {
       </DragCloseDrawer>
       {openPayment && <PaymentTypes setOpenPayment={setOpenPayment} />}
     </div>
-  );
-};
-
-type DragCloseDrawerProps = {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  children: React.ReactNode;
-};
-
-const DragCloseDrawer: React.FC<DragCloseDrawerProps> = ({
-  open,
-  setOpen,
-  children,
-}) => {
-  const [scope, animate] = useAnimate();
-  const [drawerRef, { height }] = useMeasure();
-
-  const y = useMotionValue(0);
-  const controls = useDragControls();
-
-  const handleClose = async () => {
-    animate(scope.current, {
-      opacity: [1, 0],
-    });
-
-    const yStart = typeof y.get() === "number" ? y.get() : 0;
-
-    await animate("#drawer", {
-      y: [yStart, height],
-    });
-
-    setOpen(false);
-  };
-
-  return (
-    <>
-      {open && (
-        <motion.div
-          ref={scope}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          onClick={handleClose}
-          className="fixed inset-0 z-50 bg-neutral-950/70 flex justify-center w-full"
-        >
-          <motion.div
-            id="drawer"
-            ref={drawerRef}
-            onClick={(e) => e.stopPropagation()}
-            initial={{ y: "100%" }}
-            animate={{ y: "0%" }}
-            transition={{
-              ease: "easeInOut",
-            }}
-            className="absolute bottom-0 overflow-hidden rounded-t-3xl max-w-sm w-full bg-[#F5F5F5] overflow-y-scroll no-scrollbar"
-            style={{ y }}
-            drag="y"
-            dragControls={controls}
-            onDragEnd={() => {
-              if (y.get() >= 100) {
-                handleClose();
-              }
-            }}
-            dragListener={false}
-            dragConstraints={{
-              top: 0,
-              bottom: 0,
-            }}
-            dragElastic={{
-              top: 0,
-              bottom: 0.5,
-            }}
-          >
-            <div className="relative z-0 h-full w-full px-4 py-12">
-              {children}
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </>
   );
 };

@@ -54,4 +54,13 @@ export class AuthService {
       );
     }
   };
+
+  userLogout = async () => {
+    try {
+      const { data } = await API.post("/user/logout");
+      return data;
+    } catch (error) {
+      throw new Error(handleAxiosError(error, "Failed to logout"));
+    }
+  };
 }

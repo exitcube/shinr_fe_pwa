@@ -1,11 +1,22 @@
 "use client";
 import React, { useState } from "react";
-import { ChevronRight, Crown, Clock, Bell, Gift, Info, Lock, HelpCircle, LogOut } from "lucide-react";
+import {
+  ChevronRight,
+  Crown,
+  Clock,
+  Bell,
+  Gift,
+  Info,
+  Lock,
+  HelpCircle,
+  LogOut,
+} from "lucide-react";
 import EditPersonalInfo from "./EditPersonalInfo";
 import Subscription from "./Subscription";
 import BookingHistory from "./BookingHistory";
 import ResetPassword from "./ResetPassword";
 import ReferEarn from "./ReferEarn";
+import { useAuthContext } from "@/provider/AuthProvider";
 
 const ProfileContent: React.FC = () => {
   const [showEditInfo, setShowEditInfo] = useState(false);
@@ -13,6 +24,7 @@ const ProfileContent: React.FC = () => {
   const [showBookingHistory, setShowBookingHistory] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
   const [showReferEarn, setShowReferEarn] = useState(false);
+  const { logout } = useAuthContext();
 
   const handleEditInfo = () => {
     setShowEditInfo(true);
@@ -55,8 +67,7 @@ const ProfileContent: React.FC = () => {
   };
 
   const handleLogout = () => {
-    console.log("Logout clicked");
-    // Handle logout logic
+    logout();
   };
 
   if (showEditInfo) {
@@ -88,7 +99,7 @@ const ProfileContent: React.FC = () => {
               </h2>
               <p className="text-sm text-gray-500">+91 999 888 7777</p>
             </div>
-            <button 
+            <button
               onClick={handleEditInfo}
               className="text-[#128C7E] text-sm font-medium flex items-center gap-1"
             >
@@ -104,7 +115,7 @@ const ProfileContent: React.FC = () => {
         <h3 className="text-xs text-gray-500 mb-3 px-1">Other</h3>
         <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
           {/* Subscription */}
-          <button 
+          <button
             onClick={handleSubscription}
             className="w-full flex items-center justify-between p-4 border-b border-gray-100 hover:bg-gray-50 transition-colors"
           >
@@ -116,7 +127,7 @@ const ProfileContent: React.FC = () => {
           </button>
 
           {/* Booking History */}
-          <button 
+          <button
             onClick={handleBookingHistory}
             className="w-full flex items-center justify-between p-4 border-b border-gray-100 hover:bg-gray-50 transition-colors"
           >
@@ -140,7 +151,7 @@ const ProfileContent: React.FC = () => {
           </div>
 
           {/* Refer & Earn */}
-          <button 
+          <button
             onClick={handleReferEarn}
             className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
           >
@@ -167,7 +178,7 @@ const ProfileContent: React.FC = () => {
         <h3 className="text-xs text-gray-500 mb-3 px-1">Account</h3>
         <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
           {/* Reset Password */}
-          <button 
+          <button
             onClick={handleResetPassword}
             className="w-full flex items-center justify-between p-4 border-b border-gray-100 hover:bg-gray-50 transition-colors"
           >
@@ -191,7 +202,7 @@ const ProfileContent: React.FC = () => {
 
       {/* Logout Button */}
       <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-        <button 
+        <button
           onClick={handleLogout}
           className="w-full flex items-center gap-3 p-4 hover:bg-red-50 transition-colors"
         >
