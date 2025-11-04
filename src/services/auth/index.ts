@@ -29,6 +29,18 @@ export class AuthService {
     }
   };
 
+  storeRefreshToken = async (refreshToken: string) => {
+    try {
+      return fetch("/api/auth/set-refresh", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refreshToken }),
+      });
+    } catch (error) {
+      throw new Error(handleAxiosError(error, "Failed to store refresh token"));
+    }
+  };
+
   generateRefresToken = async (payload: { refreshToken: string }) => {
     try {
       const { data } = await API.post(
@@ -40,6 +52,15 @@ export class AuthService {
       throw new Error(
         handleAxiosError(error, "Failed to generate refresh token")
       );
+    }
+  };
+
+  userLogout = async () => {
+    try {
+      const { data } = await API.post("/user/logout");
+      return data;
+    } catch (error) {
+      throw new Error(handleAxiosError(error, "Failed to logout"));
     }
   };
 }

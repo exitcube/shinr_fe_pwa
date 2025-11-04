@@ -13,17 +13,16 @@ const API = axios.create({
 API.interceptors.request.use(
   (config) => {
     const state = store.getState(); // ✅ get state directly
-    const deviceUUId = state.auth.deviceUUId;
+    const deviceUUId = state.device.deviceUUId;
+    const token = state.auth.accessToken;
 
     if (deviceUUId) {
       config.headers["x-device-id"] = deviceUUId;
     }
 
-    // const token =
-    //   typeof window !== "undefined" ? localStorage.getItem("token") : null;
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    // }
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
 
     return config;
   },

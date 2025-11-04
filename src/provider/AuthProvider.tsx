@@ -1,84 +1,114 @@
 "use client";
 
-import React, {
+import {
   createContext,
   useContext,
   useEffect,
   useState,
   ReactNode,
+  useCallback,
 } from "react";
 import { useRouter } from "next/navigation";
-import { getAccessToken, refreshAccessToken } from "@/helper/authHelpers";
+import { useDispatch } from "react-redux";
 import { IUser } from "@/types/user";
+import { setAccessToken } from "@/redux/slices/authSlice";
+import { useAuth } from "@/redux/selectors/authSelector";
+import {
+  useGenerateRefreshTokenMutation,
+  useLogoutMutation,
+  useSetRefreshTokenMutation,
+} from "@/hooks/useAuthQuery";
 
 interface AuthContextType {
   user: IUser | null;
   isAuthenticated: boolean;
-  accessToken: string | null;
   logout: () => void;
-  loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider = ({
+  children,
+  refreshToken,
+}: {
+  children: ReactNode;
+  refreshToken: string;
+}) => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { accessToken } = useAuth();
+
+  const { mutate: getRefreshedToken } = useGenerateRefreshTokenMutation();
+
+  const { mutate: setRefreshCookie } = useSetRefreshTokenMutation();
+
+  const { mutate: userLogout } = useLogoutMutation();
+
   const [user, setUser] = useState<IUser | null>(null);
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
 
-  const logout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    setUser(null);
-    setAccessToken(null);
-    router.push("/login");
-  };
-
-  const loadUser = async () => {
-    const token = getAccessToken();
-
-    if (!token) {
-      const refreshed = await refreshAccessToken();
-      if (!refreshed) {
-        logout();
-        return;
-      }
-      setAccessToken(refreshed);
-    } else {
-      setAccessToken(token);
-    }
-
-    // Fetch user details if needed (optional)
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`, {
-        headers: { Authorization: `Bearer ${token}` },
+  const logout = useCallback(() => {
+    if (accessToken) {
+      userLogout(undefined, {
+        onSuccess: () => {
+          setRefreshCookie("", {
+            onSuccess: () => {
+              setUser(null);
+              dispatch(setAccessToken(null));
+              router.push("/login");
+            },
+          });
+        },
+        onError: (error) => {
+          console.error("Logout failed:", error);
+        },
       });
-      if (res.ok) {
-        const data = await res.json();
-        setUser(data);
-      } else {
-        logout();
-      }
-    } catch {
-      logout();
-    } finally {
-      setLoading(false);
+    } else {
+      router.push("/login");
     }
-  };
+  }, [userLogout, setRefreshCookie, dispatch, router, accessToken]);
+
+  const initAuth = useCallback(() => {
+    // refresh access token using refreshToken
+    if (!accessToken && refreshToken) {
+      getRefreshedToken(
+        { refreshToken: refreshToken },
+        {
+          onSuccess: (res) => {
+            dispatch(setAccessToken(res?.data.accessToken));
+            setRefreshCookie(res.data.refreshToken);
+          },
+          onError: logout,
+        }
+      );
+      return;
+    }
+
+    // access token exists
+    if (accessToken) {
+      dispatch(setAccessToken(accessToken));
+      return;
+    }
+
+    // no access token & no refresh token => go to login immediately
+    if (!accessToken && !refreshToken) {
+      logout();
+      return;
+    }
+  }, [accessToken, refreshToken, dispatch, getRefreshedToken, logout]);
 
   useEffect(() => {
-    loadUser();
-  }, [loadUser]);
+    initAuth();
+  }, []);
+
+  // Block UI while deciding auth OR if no access token yet
+  if (!accessToken) return null;
 
   return (
     <AuthContext.Provider
       value={{
         user,
         isAuthenticated: !!user,
-        accessToken,
         logout,
-        loading,
       }}
     >
       {children}
@@ -86,9 +116,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Hook for components to use auth
 export const useAuthContext = () => {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth must be used inside AuthProvider");
-  return context;
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuthContext must be used within AuthProvider");
+  return ctx;
 };

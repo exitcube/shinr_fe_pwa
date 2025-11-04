@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 
 export const useAuth = () => {
-  const deviceUUId = useSelector((state: RootState) => state.auth.deviceUUId);
-  return { deviceUUId };
+  const accessToken = useSelector((state: RootState) => state.auth.accessToken);
+
+  return { accessToken };
 };

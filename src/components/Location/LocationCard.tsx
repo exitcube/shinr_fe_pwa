@@ -26,7 +26,10 @@ const LocationCard = () => {
         </div>
 
         {/* Address Row */}
-        <div className="flex items-center justify-between">
+        <div
+          className="flex items-center justify-between"
+          
+        >
           <p className="text-base text-[#101010] font-normal flex-1 pr-2 truncate">
             1/343 ipsum dolor sit amet, consectetur...
           </p>

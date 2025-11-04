@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    deviceUUId: "",
+    accessToken: "",
   },
   reducers: {
-    setDeviceUUId(state, action) {
-      state.deviceUUId = action.payload;
+    setAccessToken(state, action) {
+      state.accessToken = action.payload;
     },
   },
 });
 
-export const { setDeviceUUId } = authSlice.actions;
+export const { setAccessToken } = authSlice.actions;
 export default authSlice.reducer;

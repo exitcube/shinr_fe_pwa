@@ -2,12 +2,17 @@
 import React, { useState } from "react";
 import { OtpPage } from "./OtpPage";
 import LoginForm from "./LoginForm";
-import { useLoginMutation, useVerifyOtpMutation } from "@/hooks/useAuthQuery";
+import {
+  useLoginMutation,
+  useSetRefreshTokenMutation,
+  useVerifyOtpMutation,
+} from "@/hooks/useAuthQuery";
 import { ILoginPayload } from "@/types/auth";
 import { decodeToken } from "@/utils/decodeToken";
 import { useDispatch } from "react-redux";
-import { setDeviceUUId } from "@/redux/slices/authSlice";
+import { setAccessToken } from "@/redux/slices/authSlice";
 import { useRouter } from "next/navigation";
+import { setDeviceUUId } from "@/redux/slices/deviceSlice";
 
 export const Login: React.FC = () => {
   const [showOtp, setShowOtp] = useState(false);
@@ -21,6 +26,7 @@ export const Login: React.FC = () => {
   const { mutate: sendOtp, isPending: otpReqLoading } = useLoginMutation();
   const { mutate: verifyOtp, isPending: verifyLoading } =
     useVerifyOtpMutation();
+  const { mutate: setRefreshCookie } = useSetRefreshTokenMutation();
 
   const handleLogin = async (payload: ILoginPayload) => {
     sendOtp(payload, {
@@ -42,9 +48,14 @@ export const Login: React.FC = () => {
     if (!otpToken) return;
     const payload = { otp, otpToken };
     verifyOtp(payload, {
-      onSuccess: () => {
-        setOtpError("");
-        router.push("/home");
+      onSuccess: async (response) => {
+        dispatch(setAccessToken(response.data.accessToken));
+        setRefreshCookie(response.data.refreshToken, {
+          onSuccess: () => {
+            setOtpError("");
+            router.push("/home");
+          },
+        });
       },
       onError: (error) => {
         setOtpError(error.message);

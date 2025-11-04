@@ -17,7 +17,7 @@ export const useLoginMutation = () => {
 };
 
 export const useVerifyOtpMutation = () => {
-  return useMutation<void, Error, IVerifyOtpPayload>({
+  return useMutation<ITokenResponse, Error, IVerifyOtpPayload>({
     mutationKey: ["verifyOtp"],
     mutationFn: (payload) => authService.verifyOtp(payload),
   });
@@ -30,9 +30,21 @@ export const useResendOtpMutation = () => {
   });
 };
 
-export const useGenerateRefreshToken = () => {
-  return useMutation<{ refreshToken: string }, Error, ITokenResponse>({
-    mutationKey: ["refresh-token"],
+export const useSetRefreshTokenMutation = () => {
+  return useMutation({
+    mutationFn: async (refreshToken: string) =>
+      authService.storeRefreshToken(refreshToken),
+  });
+};
+
+export const useGenerateRefreshTokenMutation = () => {
+  return useMutation<ITokenResponse, Error, { refreshToken: string }>({
     mutationFn: (payload) => authService.generateRefresToken(payload),
+  });
+};
+
+export const useLogoutMutation = () => {
+  return useMutation({
+    mutationFn: () => authService.userLogout(),
   });
 };
