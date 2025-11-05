@@ -4,3 +4,7 @@ export interface IUser {
   email: string;
   mobile: string;
 }
+export interface ILocation {
+  lat: number;
+  long: number;
+}
