@@ -2,13 +2,15 @@
 
 "use client";
 
+import BackButtons from "@/common/Buttons/BackButtons";
+import NavButton from "@/common/Buttons/NavButton";
 import { ILocation } from "@/types/user";
 import { LocateFixed } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 export const SelectMapLocation: React.FC<IProps> = ({
-  selectedLocation,
   setSelectedLocation,
+  address,
 }) => {
   const mapContainer = useRef<HTMLDivElement | null>(null);
 
@@ -116,24 +118,31 @@ export const SelectMapLocation: React.FC<IProps> = ({
   };
 
   return (
-    <div className="relative w-full h-[800px] rounded-lg overflow-hidden">
+    <div className="relative w-full h-[100vh] rounded-lg overflow-hidden">
+      <BackButtons className="absolute top-4 left-2 z-10" />
       <div ref={mapContainer} className="w-full h-full" />
 
       {/* Use My Location button */}
       <button
         onClick={handleLocateClick}
-        className="absolute bottom-10 right-4 z-10 bg-white shadow-lg p-3 rounded-full font-medium text-sm hover:bg-gray-100 transition text-black"
+        className="absolute bottom-48 right-4 z-10 bg-primary shadow-lg p-3 rounded-full font-medium text-sm hover:bg-gray-100 transition text-black"
       >
-        <LocateFixed />
+        <LocateFixed color="white" />
       </button>
 
-      {/* Selected coordinates */}
-      {selectedLocation && (
-        <div className="absolute bottom-4 left-4 bg-white shadow-md px-3 py-2 rounded text-sm text-black">
-          <strong>Selected:</strong> {selectedLocation.lat.toFixed(6)},{" "}
-          {selectedLocation.long.toFixed(6)}
+      <div className="absolute bottom-0 z-10 w-full bg-white">
+        {address.name && (
+          <div className="flex flex-col items-start justify-between  px-7 py-3 font-poppins border-b border-gray-300">
+            <h3 className="font-medium text-sm text-black">{address.name}</h3>
+            <span className="font-normal text-xs text-[#878787]">
+              {address.fullAddress}
+            </span>
+          </div>
+        )}
+        <div className=" px-7 py-4">
+          <NavButton title="Confirm Location" className="mb-6" />
         </div>
-      )}
+      </div>
     </div>
   );
 };
@@ -141,6 +150,9 @@ export const SelectMapLocation: React.FC<IProps> = ({
 export default SelectMapLocation;
 
 interface IProps {
-  selectedLocation: ILocation;
   setSelectedLocation: React.Dispatch<React.SetStateAction<ILocation>>;
+  address: {
+    name: string;
+    fullAddress: string;
+  };
 }

@@ -5,6 +5,6 @@ export interface IUser {
   mobile: string;
 }
 export interface ILocation {
-  lat: number;
-  long: number;
+  lat: number | null;
+  long: number | null;
 }

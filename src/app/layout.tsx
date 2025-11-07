@@ -55,7 +55,6 @@ export default function RootLayout({
             <div className="min-h-screen w-full flex flex-col">
               <HeaderWrapper />
               <main className="flex-1">{children}</main>
-              <FooterWrapper />
             </div>
           </StoreProvider>
         </QueryProvider>

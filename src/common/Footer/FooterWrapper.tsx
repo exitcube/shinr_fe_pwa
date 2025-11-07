@@ -2,14 +2,14 @@
 import { usePathname } from "next/navigation";
 import { Footer } from "./Footer";
 
+const HIDDEN_PATHS = ["/service-booking", "/add-address"];
+
 export const FooterWrapper = () => {
   const pathname = usePathname();
 
-  const isLoginOrRoot = pathname === "/" || pathname === "/login";
+  const hideFooter = HIDDEN_PATHS.includes(pathname);
 
-  const isSplash = pathname.startsWith("/splash");
-  if (isSplash) return null;
-  const isService = pathname === "/service-booking";
+  if (hideFooter) return null;
 
-  return isLoginOrRoot || isService ? <></> : <Footer />;
+  return <Footer />;
 };

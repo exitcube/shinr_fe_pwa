@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { HomeHeader } from "./HomeHeader";
 
-const HIDDEN_PATHS = ["/service-booking"];
+const HIDDEN_PATHS = ["/service-booking", "/add-address"];
 
 const UserHeaderWrapper: React.FC = () => {
   const pathname = usePathname();
