@@ -1,3 +1,7 @@
+import API from "@/helper/axios";
+import { handleAxiosError } from "@/helper/handleAxiosError";
+import { IAddressPayload } from "@/types/user";
+
 export class CustomerAddressService {
   reverseGeocode = async (lat: number, lng: number) => {
     try {
@@ -8,6 +12,15 @@ export class CustomerAddressService {
       return data;
     } catch (error) {
       throw new Error("Failed to fetch address details");
+    }
+  };
+
+  addNewAddress = async (addressData: IAddressPayload) => {
+    try {
+      const { data } = await API.post("/user-profile/add-address", addressData);
+      return data;
+    } catch (error) {
+      throw new Error(handleAxiosError(error, "Adding new address failed"));
     }
   };
 }

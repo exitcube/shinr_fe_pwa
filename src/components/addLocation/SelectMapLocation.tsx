@@ -6,12 +6,15 @@ import BackButtons from "@/common/Buttons/BackButtons";
 import NavButton from "@/common/Buttons/NavButton";
 import { ILocation } from "@/types/user";
 import { LocateFixed } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 export const SelectMapLocation: React.FC<IProps> = ({
   setSelectedLocation,
   address,
+  setIsSaveMode,
 }) => {
+  const router = useRouter();
   const mapContainer = useRef<HTMLDivElement | null>(null);
 
   const mapInstanceRef = useRef<any>(null);
@@ -119,13 +122,18 @@ export const SelectMapLocation: React.FC<IProps> = ({
 
   return (
     <div className="relative w-full h-[100vh] rounded-lg overflow-hidden">
-      <BackButtons className="absolute top-4 left-2 z-10" />
+      <BackButtons
+        className="absolute top-4 left-2 z-10"
+        onClick={() => router.push("/home")}
+      />
       <div ref={mapContainer} className="w-full h-full" />
 
       {/* Use My Location button */}
       <button
         onClick={handleLocateClick}
-        className="absolute bottom-48 right-4 z-10 bg-primary shadow-lg p-3 rounded-full font-medium text-sm hover:bg-gray-100 transition text-black"
+        className={`absolute ${
+          address.name ? "bottom-48" : "bottom-32"
+        }  right-4 z-10 bg-primary shadow-lg p-3 rounded-full font-medium text-sm hover:bg-gray-100 transition text-black`}
       >
         <LocateFixed color="white" />
       </button>
@@ -140,7 +148,11 @@ export const SelectMapLocation: React.FC<IProps> = ({
           </div>
         )}
         <div className=" px-7 py-4">
-          <NavButton title="Confirm Location" className="mb-6" />
+          <NavButton
+            title="Confirm Location"
+            className="mb-6"
+            onClick={() => setIsSaveMode(true)}
+          />
         </div>
       </div>
     </div>
@@ -155,4 +167,5 @@ interface IProps {
     name: string;
     fullAddress: string;
   };
+  setIsSaveMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
