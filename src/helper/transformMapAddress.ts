@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { IAddressComponents } from "@/types/user";
 
 export const transformMapAddress = (

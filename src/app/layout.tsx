@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
-import { FooterWrapper } from "@/common/Footer/FooterWrapper";
 import QueryProvider from "@/provider/QueryProvider";
 import { HeaderWrapper } from "@/common/Header/HeaderWrapper";
 import { StoreProvider } from "@/provider/StoreProvider";

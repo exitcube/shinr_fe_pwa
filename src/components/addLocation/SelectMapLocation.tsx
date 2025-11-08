@@ -102,7 +102,7 @@ export const SelectMapLocation: React.FC<IProps> = ({
     return () => {
       mapInstanceRef.current?.destroy?.();
     };
-  }, []);
+  }, [setSelectedLocation]);
 
   const handleLocateClick = () => {
     if (!navigator.geolocation || !mapInstanceRef.current || !markerRef.current)

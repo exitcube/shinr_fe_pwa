@@ -11,7 +11,9 @@ export class CustomerAddressService {
       const data = await response.json();
       return data;
     } catch (error) {
-      throw new Error("Failed to fetch address details");
+      throw new Error(
+        handleAxiosError(error, "Failed to fetch address details")
+      );
     }
   };
 
