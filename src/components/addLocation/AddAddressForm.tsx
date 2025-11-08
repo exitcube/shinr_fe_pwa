@@ -7,7 +7,6 @@ import {
   userAddressFormValues,
 } from "@/validation/user";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { a } from "framer-motion/client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -93,7 +92,6 @@ export const AddAddressForm: React.FC<IProps> = ({
   }, [selectedLocation]);
 
   const onSubmit = (data: userAddressFormValues) => {
-    console.log("Form Data:", data);
     const newAddressPayload: IAddressPayload = {
       nickName: data.nickName || "",
       name: data.name,

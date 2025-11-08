@@ -24,20 +24,14 @@ export const AddAddressLayout: React.FC = () => {
     });
   const [isSaveMode, setIsSaveMode] = useState<boolean>(false);
 
-  const {
-    data: ReverseGeocodeAddress,
-    isLoading,
-    isError,
-  } = useReverseGeocode(selectedLocation.lat, selectedLocation.long);
+  const { data: ReverseGeocodeAddress } = useReverseGeocode(
+    selectedLocation.lat,
+    selectedLocation.long
+  );
 
   useEffect(() => {
     if (!ReverseGeocodeAddress) return;
     if (ReverseGeocodeAddress.results.length > 0) {
-      console.log(
-        ReverseGeocodeAddress.results[0],
-        "ReverseGeocodeAddress.results[0]"
-      );
-
       setAddressComponents(
         transformMapAddress(ReverseGeocodeAddress.results[0].address_components)
       );
