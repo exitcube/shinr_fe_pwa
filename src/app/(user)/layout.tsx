@@ -1,3 +1,4 @@
+import { FooterWrapper } from "@/common/Footer/FooterWrapper";
 import UserHeaderWrapper from "@/common/Header/UserHeaderWrapper";
 import { AuthProvider } from "@/provider/AuthProvider";
 import { cookies } from "next/headers";
@@ -14,6 +15,7 @@ export default async function UserLayout({
     <AuthProvider refreshToken={refreshToken?.value || ""}>
       <UserHeaderWrapper />
       <div>{children}</div>
+      <FooterWrapper />
     </AuthProvider>
   );
 }

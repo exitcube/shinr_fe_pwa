@@ -24,7 +24,7 @@ export const WalletModel: React.FC<WalletModelProps> = ({ open, setOpen }) => {
 
   return (
     <div className="relative">
-      <DragCloseDrawer open={open} setOpen={setOpen}>
+      <DragCloseDrawer open={open} setOpen={setOpen} title="Add Money">
         <div className="flex items-start justify-center">
           <div className="w-full max-w-md">
             {/* Amount Input */}
