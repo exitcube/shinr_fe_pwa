@@ -2,12 +2,16 @@
 import React, { useState } from "react";
 import { ArrowLeft, ArrowRight, Upload, ChevronDown } from "lucide-react";
 import SelectModal from "./SelectModal";
+import BottomSheetSelect from "../BottomSheetSelect";
+import NavButton from "@/common/Buttons/NavButton";
+import { useBrandQuery } from "@/hooks/useVehicleQuery";
 
 interface AddVehicleFormProps {
   onBack: () => void;
 }
 
 const AddVehicleForm: React.FC<AddVehicleFormProps> = ({ onBack }) => {
+  const [brandsPage, setBrandsPage] = useState(1);
   const [formData, setFormData] = useState({
     brand: "",
     model: "",
@@ -19,6 +23,10 @@ const AddVehicleForm: React.FC<AddVehicleFormProps> = ({ onBack }) => {
 
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
+  const { data: bransData, isLoading: brandsLoading } = useBrandQuery(
+    brandsPage,
+    10
+  );
   const modelOptions = ["Sedan", "SUV", "Hatchback", "Coupe", "Wagon"];
   const fuelTypeOptions = ["Petrol", "Diesel", "Electric", "Hybrid"];
 
@@ -62,14 +70,18 @@ const AddVehicleForm: React.FC<AddVehicleFormProps> = ({ onBack }) => {
         <div className="space-y-4">
           {/* Brand */}
           <div>
-            <label className="block text-sm text-gray-600 mb-2">Brand</label>
-            <input
-              type="text"
-              name="brand"
+            <BottomSheetSelect
+              label="Brand"
+              options={[
+                { label: "Model A", value: "model_a" },
+                { label: "Model B", value: "model_b" },
+              ]}
               value={formData.brand}
-              onChange={handleInputChange}
-              placeholder="Enter Vehicle Brand"
-              className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#128C7E]"
+              onChange={(val) =>
+                setFormData((prev) => ({ ...prev, model: val }))
+              }
+              placeholder="Select Vehicle Brand"
+              required
             />
           </div>
 
@@ -81,7 +93,9 @@ const AddVehicleForm: React.FC<AddVehicleFormProps> = ({ onBack }) => {
               onClick={() => setActiveModal("model")}
               className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm text-left focus:outline-none focus:border-[#128C7E] flex items-center justify-between"
             >
-              <span className={formData.model ? "text-gray-900" : "text-gray-400"}>
+              <span
+                className={formData.model ? "text-gray-900" : "text-gray-400"}
+              >
                 {formData.model || "Select Vehicle Model"}
               </span>
               <ChevronDown size={16} className="text-gray-400" />
@@ -126,7 +140,11 @@ const AddVehicleForm: React.FC<AddVehicleFormProps> = ({ onBack }) => {
               onClick={() => setActiveModal("fuelType")}
               className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm text-left focus:outline-none focus:border-[#128C7E] flex items-center justify-between"
             >
-              <span className={formData.fuelType ? "text-gray-900" : "text-gray-400"}>
+              <span
+                className={
+                  formData.fuelType ? "text-gray-900" : "text-gray-400"
+                }
+              >
                 {formData.fuelType || "Select Vehicle Fuel Type"}
               </span>
               <ChevronDown size={16} className="text-gray-400" />
@@ -174,13 +192,7 @@ const AddVehicleForm: React.FC<AddVehicleFormProps> = ({ onBack }) => {
 
       {/* Bottom Fixed Button */}
       <div className="bg-white px-4 py-3 border-t border-gray-200">
-        <button
-          onClick={handleSubmit}
-          className="w-full bg-[#128C7E] text-white py-3 rounded-full font-medium text-sm hover:bg-[#0f7269] transition-colors flex items-center justify-around gap-2"
-        >
-          <span>Next</span>
-          <ArrowRight size={18} />
-        </button>
+        <NavButton title="Next" />
       </div>
 
       {/* Model Selection Modal */}
