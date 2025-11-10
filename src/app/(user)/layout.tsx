@@ -12,12 +12,10 @@ export default async function UserLayout({
   const refreshToken = c.get("refreshToken");
 
   return (
-    <>
-      // {/* <AuthProvider refreshToken={refreshToken?.value || ""}> */}
+    <AuthProvider refreshToken={refreshToken?.value || ""}>
       <UserHeaderWrapper />
       <div>{children}</div>
       <FooterWrapper />
-      // {/* </AuthProvider> */}
-    </>
+    </AuthProvider>
   );
 }

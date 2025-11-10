@@ -1,17 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import { ArrowLeft, ArrowRight, Upload, ChevronDown } from "lucide-react";
+import { ArrowLeft, Upload, ChevronDown } from "lucide-react";
 import SelectModal from "./SelectModal";
 import BottomSheetSelect from "../BottomSheetSelect";
 import NavButton from "@/common/Buttons/NavButton";
-import { useBrandQuery } from "@/hooks/useVehicleQuery";
 
 interface AddVehicleFormProps {
   onBack: () => void;
 }
 
 const AddVehicleForm: React.FC<AddVehicleFormProps> = ({ onBack }) => {
-  const [brandsPage, setBrandsPage] = useState(1);
+  // const [brandsPage, setBrandsPage] = useState(1);
   const [formData, setFormData] = useState({
     brand: "",
     model: "",
@@ -23,10 +22,10 @@ const AddVehicleForm: React.FC<AddVehicleFormProps> = ({ onBack }) => {
 
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
-  const { data: bransData, isLoading: brandsLoading } = useBrandQuery(
-    brandsPage,
-    10
-  );
+  // const { data: bransData, isLoading: brandsLoading } = useBrandQuery(
+  //   brandsPage,
+  //   10
+  // );
   const modelOptions = ["Sedan", "SUV", "Hatchback", "Coupe", "Wagon"];
   const fuelTypeOptions = ["Petrol", "Diesel", "Electric", "Hybrid"];
 
@@ -47,10 +46,10 @@ const AddVehicleForm: React.FC<AddVehicleFormProps> = ({ onBack }) => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", formData);
-    // Handle form submission
-  };
+  // const handleSubmit = () => {
+  //   console.log("Form submitted:", formData);
+  //   // Handle form submission
+  // };
 
   return (
     <div className="fixed inset-0 bg-[#F5F5F5] z-50 flex flex-col font-poppins">
