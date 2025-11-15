@@ -1,4 +1,5 @@
 import { DragCloseDrawer } from "@/common/DragCloseDrawer";
+import { ISavedAddress } from "@/types/user";
 import {
   CheckmarkCircle01Icon,
   Location01Icon,
@@ -9,7 +10,11 @@ import Link from "next/link";
 
 import React, { useState } from "react";
 
-const LocationModal: React.FC<IProps> = ({ isOpen, setIsOpen }) => {
+const LocationModal: React.FC<IProps> = ({
+  isOpen,
+  setIsOpen,
+  savedAddresses,
+}) => {
   const [selectedId, setSelectedId] = useState(locationData[0].id);
   return (
     <DragCloseDrawer open={isOpen} setOpen={setIsOpen} title="Location">
@@ -25,44 +30,46 @@ const LocationModal: React.FC<IProps> = ({ isOpen, setIsOpen }) => {
       </div>
       <div className="font-poppins flex flex-col items-start gap-1.5">
         <h2 className="font-semibold text-black">Select Location</h2>
-        <div className="flex flex-col gap-3 w-full">
-          {locationData.map((location) => (
-            <div
-              key={location.id}
-              className={`border ${
-                selectedId === location.id
-                  ? "border-[#128C7E]"
-                  : "border-[#D6D6D6]"
-              }  flex items-center justify-between p-2 w-full rounded-xl`}
-              onClick={() => setSelectedId(location.id)}
-            >
-              <div className="flex flex-col gap-1.5">
-                <p className="text-[#101010] font-medium text-sm">
-                  {location.name}
-                </p>
-                <span className="flex gap-1 items-center">
-                  <HugeiconsIcon
-                    icon={Location01Icon}
-                    color=""
-                    fill="#878787"
-                    size={15}
-                  />
-                  <p className="text-[#878787] text-xs font-normal">
-                    {location.address}
+        {savedAddresses.length > 0 && (
+          <div className="flex flex-col gap-3 w-full">
+            {savedAddresses.map((location) => (
+              <div
+                key={location.addressId}
+                className={`border ${
+                  selectedId === location.addressId
+                    ? "border-[#128C7E]"
+                    : "border-[#D6D6D6]"
+                }  flex items-center justify-between p-2 w-full rounded-xl`}
+                onClick={() => setSelectedId(location.addressId)}
+              >
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-[#101010] font-medium text-sm">
+                    {location.name}
                   </p>
-                </span>
+                  <span className="flex gap-1 items-center">
+                    <HugeiconsIcon
+                      icon={Location01Icon}
+                      color=""
+                      fill="#878787"
+                      size={15}
+                    />
+                    <p className="text-[#878787] text-xs font-normal">
+                      {location.addressLine1}
+                    </p>
+                  </span>
+                </div>
+                {selectedId === location.addressId && (
+                  <HugeiconsIcon
+                    icon={CheckmarkCircle01Icon}
+                    color="white"
+                    fill="#128C7E"
+                    size={25}
+                  />
+                )}
               </div>
-              {selectedId === location.id && (
-                <HugeiconsIcon
-                  icon={CheckmarkCircle01Icon}
-                  color="white"
-                  fill="#128C7E"
-                  size={25}
-                />
-              )}
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
         <div className="mt-4 mb-6 flex justify-center w-full">
           <Link
             // onClick={() => {
@@ -97,6 +104,7 @@ export default LocationModal;
 interface IProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  savedAddresses: ISavedAddress[];
 }
 
 const locationData = [
