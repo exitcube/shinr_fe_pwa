@@ -1,4 +1,5 @@
 import { DragCloseDrawer } from "@/common/DragCloseDrawer";
+import { useSelectDefaultAddressMutation } from "@/hooks/useAddressQuery";
 import { ISavedAddress } from "@/types/user";
 import {
   CheckmarkCircle01Icon,
@@ -9,13 +10,37 @@ import { ArrowRight, Search } from "lucide-react";
 import Link from "next/link";
 
 import React, { useState } from "react";
+import { ClipLoader } from "react-spinners";
 
 const LocationModal: React.FC<IProps> = ({
   isOpen,
   setIsOpen,
   savedAddresses,
+  defaultAddress,
 }) => {
-  const [selectedId, setSelectedId] = useState(locationData[0].id);
+  const [selectedId, setSelectedId] = useState(defaultAddress.addressId);
+
+  const [selectAddressLoading, setSelectAddressLoading] = useState<
+    number | null
+  >(null);
+
+  const { mutate: onAddressSelect } = useSelectDefaultAddressMutation();
+
+  const handleAddressSelect = (addressId: number) => {
+    setSelectAddressLoading(addressId);
+
+    onAddressSelect(addressId, {
+      onSuccess: () => {
+        setSelectedId(addressId);
+        setIsOpen(false);
+        setSelectAddressLoading(null);
+      },
+      onSettled: () => {
+        setSelectAddressLoading(null);
+      },
+    });
+  };
+
   return (
     <DragCloseDrawer open={isOpen} setOpen={setIsOpen} title="Location">
       <div className="mb-4 text-black">
@@ -40,7 +65,7 @@ const LocationModal: React.FC<IProps> = ({
                     ? "border-[#128C7E]"
                     : "border-[#D6D6D6]"
                 }  flex items-center justify-between p-2 w-full rounded-xl`}
-                onClick={() => setSelectedId(location.addressId)}
+                onClick={() => handleAddressSelect(location.addressId)}
               >
                 <div className="flex flex-col gap-1.5">
                   <p className="text-[#101010] font-medium text-sm">
@@ -58,24 +83,25 @@ const LocationModal: React.FC<IProps> = ({
                     </p>
                   </span>
                 </div>
-                {selectedId === location.addressId && (
-                  <HugeiconsIcon
-                    icon={CheckmarkCircle01Icon}
-                    color="white"
-                    fill="#128C7E"
-                    size={25}
-                  />
+                {selectAddressLoading === location.addressId && (
+                  <ClipLoader color="black" size={20} />
                 )}
+
+                {selectAddressLoading !== location.addressId &&
+                  selectedId === location.addressId && (
+                    <HugeiconsIcon
+                      icon={CheckmarkCircle01Icon}
+                      color="white"
+                      fill="#128C7E"
+                      size={25}
+                    />
+                  )}
               </div>
             ))}
           </div>
         )}
         <div className="mt-4 mb-6 flex justify-center w-full">
           <Link
-            // onClick={() => {
-            //   setConfirmMode("add");
-            //   setIsConfirmOpen(true);
-            // }}
             href={"/add-address"}
             className="text-[#128C7E] text-sm text-center font-semibold underline"
           >
@@ -105,17 +131,5 @@ interface IProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   savedAddresses: ISavedAddress[];
+  defaultAddress: ISavedAddress;
 }
-
-const locationData = [
-  {
-    id: 1,
-    name: "Sharuk",
-    address: "1/342, HSR Layout, Bangalore",
-  },
-  {
-    id: 2,
-    name: "Khan",
-    address: "1/342, HSR Layout, Bangalore",
-  },
-];

@@ -11,7 +11,7 @@ const LocationCard = () => {
   const { data: userSavedAddress, isLoading: addressLoading } =
     useSavedAddressesQuery();
 
-  const defaultAddress = useMemo(() => {
+  const defaultAddress: ISavedAddress = useMemo(() => {
     if (userSavedAddress && userSavedAddress.addresses.length > 0) {
       return userSavedAddress.addresses.find(
         (address: ISavedAddress) => address.isDefault
@@ -57,6 +57,7 @@ const LocationCard = () => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         savedAddresses={userSavedAddress.addresses}
+        defaultAddress={defaultAddress}
       />
     </div>
   );

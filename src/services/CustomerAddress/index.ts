@@ -36,4 +36,17 @@ export class CustomerAddressService {
       );
     }
   };
+
+  selectDefaultAddress = async (addressId: number) => {
+    try {
+      const { data } = await API.post(
+        `/user-profile/select-address/${addressId}`
+      );
+      return data;
+    } catch (error) {
+      throw new Error(
+        handleAxiosError(error, "Selecting default address failed")
+      );
+    }
+  };
 }
