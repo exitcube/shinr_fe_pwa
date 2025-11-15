@@ -27,3 +27,17 @@ export interface IAddressPayload {
   latitude: number;
   longitude: number;
 }
+
+export interface ISavedAddress {
+  addressId: number;
+  nickName: string;
+  name: string;
+  addressLine1: string;
+  country: string;
+  city: string;
+  state: string;
+  pinCode: string;
+  latitude: string;
+  longitude: string;
+  isDefault: boolean;
+}

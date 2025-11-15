@@ -25,4 +25,15 @@ export class CustomerAddressService {
       throw new Error(handleAxiosError(error, "Adding new address failed"));
     }
   };
+
+  getAllSavedAddresses = async () => {
+    try {
+      const { data } = await API.get("/user-profile/addresses");
+      return data.data;
+    } catch (error) {
+      throw new Error(
+        handleAxiosError(error, "Fetching saved addresses failed")
+      );
+    }
+  };
 }

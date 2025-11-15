@@ -6,7 +6,7 @@ import { ServiceSection } from "@/components/homeArea/ServiceSection";
 import { ShineSection } from "@/components/homeArea/ShineSection";
 import { VendorsSection } from "@/components/homeArea/VendorsSection";
 import { FadeInSection } from "@/utils/FadeInSection";
-import LocationCard from "@/components/Location/LocationCard";
+import LocationCard from "@/components/homeArea/LocationCard";
 import React from "react";
 
 const HomePageContent = () => {
