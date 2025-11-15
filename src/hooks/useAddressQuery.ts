@@ -34,3 +34,16 @@ export const useSavedAddressesQuery = () => {
     staleTime: 60 * 60 * 1000,
   });
 };
+
+export const useSelectDefaultAddressMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationKey: ["selectDefaultAddress"],
+    mutationFn: (addressId: number) =>
+      AddressService.selectDefaultAddress(addressId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["savedAddresses"] });
+    },
+  });
+};
