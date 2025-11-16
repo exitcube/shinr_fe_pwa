@@ -18,7 +18,7 @@ const LocationModal: React.FC<IProps> = ({
   savedAddresses,
   defaultAddress,
 }) => {
-  const [selectedId, setSelectedId] = useState(defaultAddress.addressId);
+  const [selectedId, setSelectedId] = useState(defaultAddress?.addressId || null);
 
   const [selectAddressLoading, setSelectAddressLoading] = useState<
     number | null
