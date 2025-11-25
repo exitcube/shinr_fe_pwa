@@ -3,10 +3,11 @@ import { useSelectDefaultAddressMutation } from "@/hooks/useAddressQuery";
 import { ISavedAddress } from "@/types/user";
 import {
   CheckmarkCircle01Icon,
+  Home09Icon,
   Location01Icon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, LocateFixed, Search } from "lucide-react";
 import Link from "next/link";
 
 import React, { useState } from "react";
@@ -18,7 +19,9 @@ const LocationModal: React.FC<IProps> = ({
   savedAddresses,
   defaultAddress,
 }) => {
-  const [selectedId, setSelectedId] = useState(defaultAddress?.addressId || null);
+  const [selectedId, setSelectedId] = useState(
+    defaultAddress?.addressId || null
+  );
 
   const [selectAddressLoading, setSelectAddressLoading] = useState<
     number | null
@@ -43,7 +46,7 @@ const LocationModal: React.FC<IProps> = ({
 
   return (
     <DragCloseDrawer open={isOpen} setOpen={setIsOpen} title="Location">
-      <div className="mb-4 text-black">
+      <div className="mb-4 text-black flex flex-col gap-4">
         <div className="w-full rounded-full border border-gray-300 px-2.5 py-2.5 text-sm flex items-center gap-2">
           <Search size={20} className="text-gray-500" />
           <input
@@ -52,6 +55,32 @@ const LocationModal: React.FC<IProps> = ({
             className="flex-1 outline-none bg-transparent "
           />
         </div>
+        <div className="w-full rounded-xl border border-gray-300 font-poppins">
+          <div className="flex items-center justify-between p-2">
+            <div className="flex flex-col max-w-1/2">
+              <h3 className="font-medium text-sm text-primary flex gap-1 items-center">
+                <span>
+                  <LocateFixed color="#128C7E" />
+                </span>
+                Current Location
+              </h3>
+              <p className="font-normal text-xs text-[#878787]">
+                enable your current location for better service
+              </p>
+            </div>
+            <button className="rounded-full px-3 py-2 text-primary border border-primary">
+              Enable
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="mt-4 mb-6 flex justify-center w-full">
+        <Link
+          href={"/add-address"}
+          className="text-[#128C7E] text-base text-center font-medium font-poppins"
+        >
+          <span className="underline">Add New Address</span>&nbsp;+
+        </Link>
       </div>
       <div className="font-poppins flex flex-col items-start gap-1.5">
         <h2 className="font-semibold text-black">Select Location</h2>
@@ -68,9 +97,17 @@ const LocationModal: React.FC<IProps> = ({
                 onClick={() => handleAddressSelect(location.addressId)}
               >
                 <div className="flex flex-col gap-1.5">
-                  <p className="text-[#101010] font-medium text-sm">
-                    {location.name}
-                  </p>
+                  <span className="flex gap-1 items-center">
+                    <HugeiconsIcon
+                      icon={Home09Icon}
+                      color="black"
+                      fill=""
+                      size={15}
+                    />
+                    <p className="text-[#101010] font-medium text-sm">
+                      {location.name}
+                    </p>
+                  </span>
                   <span className="flex gap-1 items-center">
                     <HugeiconsIcon
                       icon={Location01Icon}
@@ -100,14 +137,7 @@ const LocationModal: React.FC<IProps> = ({
             ))}
           </div>
         )}
-        <div className="mt-4 mb-6 flex justify-center w-full">
-          <Link
-            href={"/add-address"}
-            className="text-[#128C7E] text-sm text-center font-semibold underline"
-          >
-            Add New Address +
-          </Link>
-        </div>
+
         <div className="w-full inset-x-0 bottom-0 pb-5 pt-2">
           <button
             disabled={!selectedId}
